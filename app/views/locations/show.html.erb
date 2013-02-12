@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="span8">
+    <table>
+      <tr>
+        <td>Address</td>
+        <td>
+          <%= @location.address1 %><br />
+          <%= @location.address2 %>
+        </td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><%= @location.city %></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td><%= @location.state %></td>
+      </tr>
+      <tr>
+        <td>Zip</td>
+        <td><%= @location.zip %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="span4">
+    <%= link_to "Edit Location", :action => :edit, :id => @location.id %>
+  </div>
+</div>

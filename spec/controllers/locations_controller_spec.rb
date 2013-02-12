@@ -79,8 +79,59 @@ describe LocationsController do
   end
 
   describe "GET 'show'" do
-    it "should be successful"
+    before { @location = Factory(:location) }
+    it "should be successful" do
+      get :show, :id => @location.id
+      response.should be_success
+    end
+    it "should have the right title" do
+      get :show, :id => @location.id
+      response.should have_selector("title", :content => " | " + @location.name)
+    end
+    it "should have the title in big letters at the top" do
+      get :show, :id => @location.id
+      response.should have_selector("h1", :content => @location.name)
+    end
   end
-      
+
+  describe "GET 'edit'" do
+    before { @location = Factory(:location) }
+    it "should be successful" do
+      get :edit, :id => @location.id
+      response.should be_success
+    end
+    it "should have the right title" do
+      get :edit, :id => @location.id
+      response.should have_selector("title", :content => " | Edit " + @location.name)
+    end
+    it "should have the title in big letters at the top" do
+      get :edit, :id => @location.id
+      response.should have_selector("h1", :content => "Edit " + @location.name)
+    end
+    it "should have a name field" do
+      get :edit, :id => @location.id
+      response.should have_selector("input[name='location[name]'][type='text']")
+    end
+    it "should have an address1 field" do
+      get :edit, :id => @location.id
+      response.should have_selector("input[name='location[address1]'][type='text']")
+    end
+    it "should have an address2 field" do
+      get :edit, :id => @location.id
+      response.should have_selector("input[name='location[address2]'][type='text']")
+    end
+    it "should have a city field" do
+      get :edit, :id => @location.id
+      response.should have_selector("input[name='location[city]'][type='text']")
+    end
+    it "should have a state field" do
+      get :edit, :id => @location.id
+      response.should have_selector("input[name='location[state]'][type='text']")
+    end
+    it "should have a zip field" do
+      get :edit, :id => @location.id
+      response.should have_selector("input[name='location[zip]'][type='text']")
+    end
+  end
 
 end

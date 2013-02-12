@@ -18,4 +18,14 @@ class LocationsController < ApplicationController
     end
   end
 
+  def show
+    @location = Location.find(params[:id])
+    @title = @location.name
+  end
+
+  def edit
+    @location = Location.find(params[:id])
+    @title = "Edit " + @location.name
+  end
+
 end

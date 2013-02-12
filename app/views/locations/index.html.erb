@@ -6,7 +6,7 @@
 <% @locations.each do |location| %>
   <div class="row">
     <div class="span4">
-      <%= location.name %>
+      <%= link_to location.name, :action => :show, :id => location.id %>
     </div>
   </div>
 <% end %>
