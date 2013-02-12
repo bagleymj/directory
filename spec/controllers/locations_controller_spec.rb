@@ -5,6 +5,11 @@ describe LocationsController do
   
   render_views
 
+  before(:each) do
+    @attr = {:name => "Test Location", :address1 => "Test street", :address2 => "",
+      :city => "Forsyth", :state => "GA", :zip => "31029"}
+  end
+
   describe "list locations" do
     it "should be successful" do
       get :index
@@ -60,5 +65,22 @@ describe LocationsController do
       response.should have_selector("input[name='location[zip]'][type='text']")
     end
   end
+
+  describe "post 'create' location" do
+    it "should add a new location" do
+      lambda do
+        post :create, :location => @attr
+      end.should change(Location, :count).by(1)
+    end
+    it "should redirect to location list" do
+      post :create, :location => @attr
+      response.should redirect_to locations_path
+    end
+  end
+
+  describe "GET 'show'" do
+    it "should be successful"
+  end
+      
 
 end

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="span4">
+    <h3>Location Name</h3>
+  </div>
+</div>
+<% @locations.each do |location| %>
+  <div class="row">
+    <div class="span4">
+      <%= location.name %>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="span4">
+    <%= link_to "Add New Location", :action => :new %>
+  </div>
+</div>
