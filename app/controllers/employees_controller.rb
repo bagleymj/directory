@@ -20,12 +20,12 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    @title = @employee.name
+    @title = @employee.first_name
   end
 
   def edit
     @employee = Employee.find(params[:id])
-    @title = "Edit " + @employee.name
+    @title = "Edit " + @employee.first_name
   end
 
   def update
@@ -33,7 +33,7 @@ class EmployeesController < ApplicationController
     if @employee.update_attributes(params[:employee])
       redirect_to employees_path
     else
-      @title = "Edit " + @employee.name
+      @title = "Edit " + @employee.first_name
       render :edit
     end
   end
