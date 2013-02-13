@@ -87,5 +87,14 @@ describe EmployeesController do
       get :edit, :id => @employee.id
       response.should have_selector("h1", :content => "Edit " + @employee.name)
     end
+    it "should have the correct form fields" do
+      get :edit, :id => @employee.id
+      response.should have_selector("input[name='employee[name]'][type='text']")
+      response.should have_selector("input[name='employee[address1]'][type='text']")
+      response.should have_selector("input[name='employee[address2]'][type='text']")
+      response.should have_selector("input[name='employee[city]'][type='text']")
+      response.should have_selector("input[name='employee[state]'][type='text']")
+      response.should have_selector("input[name='employee[zip]'][type='text']")
+    end
   end
 end
