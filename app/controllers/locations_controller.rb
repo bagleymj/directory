@@ -28,4 +28,22 @@ class LocationsController < ApplicationController
     @title = "Edit " + @location.name
   end
 
+  def update
+    @location = Location.find(params[:id])
+    if @location.update_attributes(params[:location])
+      flash[ :success ] = "Section updated!"
+      redirect_to locations_path
+    else
+      @title = "Edit " + @location.name
+      render :edit
+    end
+  end
+
+  def destroy
+    @location = Location.find(params[:id])
+    @location.destroy
+    flash[ :success ] = "Location deleted"
+    redirect_to locations_path
+  end
+
 end

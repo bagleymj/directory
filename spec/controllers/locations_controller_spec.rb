@@ -134,4 +134,45 @@ describe LocationsController do
     end
   end
 
+  describe "PUT 'update'" do
+    before { @location = Factory(:location) }
+    describe "success" do
+
+      before { @attr = { :name => "New Name", :address1 => "New Address", :address2 => "New 2nd Address", 
+        :city => "Newcity", :state => "GA", :zip => "12345" } }
+
+      it "should change the locations attributes" do
+        put :update, :id => @location.id , :location => @attr
+        @location.reload
+        @location.name.should == @attr[:name]
+        @location.address1.should == @attr[:address1]
+        @location.address2.should == @attr[:address2]
+        @location.city.should == @attr[:city]
+        @location.state.should == @attr[:state]
+        @location.zip.should == @attr[:zip]
+      end
+      it "should redirect to location list" do
+        put :update, :id => @location.id, :location => @attr
+        response.should redirect_to locations_path
+      end
+
+    end
+
+  end
+
+  describe "DELETE 'destroy'" do
+    before { @location = Factory(:location) }
+
+    it "should destroy the section" do
+      lambda do
+        delete :destroy, :id => @location.id
+      end.should change(Location, :count).by(-1)
+    end
+
+    it "should redirect to the location list" do
+      delete :destroy, :id => @location.id
+      response.should redirect_to locations_path
+    end
+  end
+
 end
