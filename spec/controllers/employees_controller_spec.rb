@@ -97,4 +97,41 @@ describe EmployeesController do
       response.should have_selector("input[name='employee[zip]'][type='text']")
     end
   end
+
+  describe "PUT 'update'" do
+    before { @employee = Factory(:employee) }
+    describe "success" do
+      before { @attr = {:name => "Test", :address1 => "1 Street", :address2 => "12", :city => "WR", 
+        :state => "GA", :zip => "12345"} }
+      
+      it "should change the employee's attributes" do
+        put :update, :id => @employee.id, :employee => @attr
+        @employee.reload
+        @employee.name.should == @attr[:name]
+        @employee.address1.should == @attr[:address1]
+        @employee.address2.should == @attr[:address2]
+        @employee.city.should == @attr[:city]
+        @employee.state.should == @attr[:state]
+        @employee.zip.should == @attr[:zip]
+      end
+
+      it "should redirect to the employee list" do
+        put :update, :id => @employee.id, :employee => @attr
+        response.should redirect_to employees_path
+      end
+    end
+  end
+
+  describe "DELETE 'destroy'" do
+    before { @employee = Factory(:employee) }
+    it "should delete the entry" do
+      lambda do
+        delete :destroy, :id => @employee.id
+      end.should change(Employee, :count).by(-1)
+    end
+    it "should redirect to the employee list" do
+      delete :destroy, :id => @employee.id
+      response.should redirect_to employees_path
+    end
+  end
 end

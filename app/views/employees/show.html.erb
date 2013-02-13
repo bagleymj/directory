@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="span6">
+    <table>
+      <tr>
+        <td>
+          Address
+        </td>
+        <td>
+          <%= @employee.address1 + "\n" + @employee.address2 %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          City
+        </td>
+        <td>
+          <%= @employee.city %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          State
+        </td>
+        <td>
+          <%= @employee.state %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Zip
+        </td>
+        <td>
+          <%= @employee.zip %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="span1">
+    <%= link_to "Edit Employee", :action => :edit, :id => @employee.id %>
+  </div>
+  <div class="span1">
+    <%= link_to "Delete Employee", @employee, :method => :delete, :confirm => "Really?",
+                                                                  :title => "Delete #{@employee.name}" %>
+  </div>
+</div>

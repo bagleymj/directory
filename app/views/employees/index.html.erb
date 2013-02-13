@@ -1,0 +1,12 @@
+<% @employees.each do |employee| %>
+  <div class="row">
+    <div class="span6">
+      <%= link_to employee.name, :action => :show, :id => employee.id %>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="span4">
+    <%= link_to "Add New Employee", :action => :new %>
+  </div>
+</div>
