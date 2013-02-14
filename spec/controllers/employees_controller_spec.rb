@@ -73,11 +73,11 @@ describe EmployeesController do
     end
     it "should have the right title" do
       get :show, :id => @employee.id
-      response.should have_selector("title", :content => " | " + @employee.first_name)
+      response.should have_selector("title", :content => " | " + @employee.name)
     end
     it "should have the right title in big letters at the top" do
       get :show, :id => @employee.id
-      response.should have_selector("title", :content => @employee.first_name)
+      response.should have_selector("title", :content => @employee.name)
     end
   end
 
@@ -89,11 +89,11 @@ describe EmployeesController do
     end
     it "should have the right title" do
       get :edit, :id => @employee.id
-      response.should have_selector("title", :content => " | Edit " + @employee.first_name)
+      response.should have_selector("title", :content => " | Edit " + @employee.name)
     end
     it "should have the title in big letters at the top" do
       get :edit, :id => @employee.id
-      response.should have_selector("h1", :content => "Edit " + @employee.first_name)
+      response.should have_selector("h1", :content => "Edit " + @employee.name)
     end
     it "should have the correct form fields" do
       get :edit, :id => @employee.id

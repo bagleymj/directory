@@ -21,4 +21,5 @@ describe Employee do
   it { should respond_to(:birthday) }
   it { should respond_to(:hire_date) }
   it { should respond_to(:location_id) }
+  it { should respond_to(:name) }
 end

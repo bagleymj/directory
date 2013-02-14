@@ -1,36 +1,46 @@
 <div class="row">
   <div class="span6">
-    <table>
+    <table class="table table-striped table-condensed table-bordered">
       <tr>
+        <th>
+          Home Phone
+        </th>
         <td>
+          <%= @employee.home_num %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Mobile Phone
+        </th>
+        <td>
+          <%= @employee.mobile_num %>
+        </td>
+      </tr>
+      <tr>
+        <th>
           Address
-        </td>
+        </th>
         <td>
-          <%= @employee.address1 + "\n" + @employee.address2 %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          City
-        </td>
-        <td>
-          <%= @employee.city %>
+          <strong><%= @employee.name %></strong><br />
+          <%= @employee.address1 + "\n" + @employee.address2 %><br />
+          <%= @employee.city + ", " + @employee.state + " " + @employee.zip %>
         </td>
       </tr>
       <tr>
+        <th>
+          Birthday
+        </th>
         <td>
-          State
-        </td>
-        <td>
-          <%= @employee.state %>
+          <%= @employee.birthday %>
         </td>
       </tr>
       <tr>
+        <th>
+          Hire Date
+        </th>
         <td>
-          Zip
-        </td>
-        <td>
-          <%= @employee.zip %>
+          <%= @employee.hire_date %>
         </td>
       </tr>
     </table>
@@ -42,6 +52,6 @@
   </div>
   <div class="span1">
     <%= link_to "Delete Employee", @employee, :method => :delete, :confirm => "Really?",
-                                                                  :title => "Delete #{@employee.first_name}" %>
+                                                                  :title => "Delete #{@employee.name}" %>
   </div>
 </div>
