@@ -6,7 +6,24 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="padding-top:40px">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to "Gresco Directory", root_path, :class => "brand" %>
+        <div class="navbar-collapse">
+          <ul class="nav">
+            <% Location.all.each do |location| %>
+              <li>
+                <%= link_to location.name, :controller => :locations, :action => :show, :id => location %>
+              </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="pageheader">
       <h1><%= @title %></h1>

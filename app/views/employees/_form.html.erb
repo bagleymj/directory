@@ -13,6 +13,12 @@
     </div>
   </div>
   <div class="row">
+    <div class="span4">
+      <%= f.label :location_id %><br />
+      <%= f.collection_select :location_id, Location.all, :id, :name, :prompt => true %>
+    </div>
+  </div>
+  <div class="row">
     <div class="span3">
       <%= f.label :home_num %>
     </div>
