@@ -8,7 +8,6 @@ describe Employee do
   end
 
   subject { @employee }
-  it { should respond_to(:name) }
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should respond_to(:middle_name) }
@@ -20,5 +19,6 @@ describe Employee do
   it { should respond_to(:mobile_num) }
   it { should respond_to(:home_num) }
   it { should respond_to(:birthday) }
+  it { should respond_to(:hire_date) }
   it { should respond_to(:location_id) }
 end
