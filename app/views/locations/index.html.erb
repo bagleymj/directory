@@ -1,17 +1,54 @@
 <div class="row">
-  <div class="span4">
-    <h3>Location Name</h3>
-  </div>
-</div>
-<% @locations.each do |location| %>
-  <div class="row">
-    <div class="span4">
-      <%= link_to location.name, :action => :show, :id => location.id %>
-    </div>
-  </div>
-<% end %>
-<div class="row">
-  <div class="span4">
-    <%= link_to "Add New Location", :action => :new %>
+  <div class="span10">
+
+    <table class="table">
+      <caption>Location Maintenance</caption>
+      <thead>
+        <th>Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Actions</th>
+      </thead>
+
+      <% @locations.each do |location| %>
+        <tr>
+          <td>
+            <%= link_to location.name, :action => :show, :id => location.id %>
+          </td>
+          <td>
+            <%= location.city %>
+          </td>
+          <td>
+            <%= location.state %>
+          </td>
+          <td>
+            <%= location.zip %>
+          </td>
+          <td>
+            <%= link_to "Edit", :action => :edit, :id => location %> | <%= link_to "Delete", location, :method => :delete,
+                                                                        :confirm => "Really delete?", 
+                                                                        :title => "Delete #{location.name}" %>
+        </tr>
+      <% end %>
+      <tr>
+        <td>
+          <%= link_to "Add New Location", :action => :new %>
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+
+    </table>
   </div>
 </div>

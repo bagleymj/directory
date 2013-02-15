@@ -30,10 +30,6 @@ describe EmployeesController do
       get :new
       response.should have_selector("title", :content => " | New Employee")
     end
-    it "should have the title in big letters at the top" do
-      get :new
-      response.should have_selector("h1", :content => "New Employee")
-    end
     it "should have the correct form fields" do
       get :new
       response.should have_selector("input[name='employee[first_name]'][type='text']")
@@ -44,10 +40,8 @@ describe EmployeesController do
       response.should have_selector("input[name='employee[city]'][type='text']")
       response.should have_selector("input[name='employee[state]'][type='text']")
       response.should have_selector("input[name='employee[zip]'][type='text']")
-      response.should have_selector("input[name='employee[birthday]'][type='text']")
       response.should have_selector("input[name='employee[home_num]'][type='text']")
       response.should have_selector("input[name='employee[mobile_num]'][type='text']")
-      response.should have_selector("input[name='employee[hire_date]'][type='text']")
     end
   end
 
@@ -75,10 +69,6 @@ describe EmployeesController do
       get :show, :id => @employee.id
       response.should have_selector("title", :content => " | " + @employee.name)
     end
-    it "should have the right title in big letters at the top" do
-      get :show, :id => @employee.id
-      response.should have_selector("title", :content => @employee.name)
-    end
   end
 
   describe "GET 'edit'" do
@@ -91,10 +81,6 @@ describe EmployeesController do
       get :edit, :id => @employee.id
       response.should have_selector("title", :content => " | Edit " + @employee.name)
     end
-    it "should have the title in big letters at the top" do
-      get :edit, :id => @employee.id
-      response.should have_selector("h1", :content => "Edit " + @employee.name)
-    end
     it "should have the correct form fields" do
       get :edit, :id => @employee.id
       response.should have_selector("input[name='employee[first_name]'][type='text']")
@@ -105,7 +91,6 @@ describe EmployeesController do
       response.should have_selector("input[name='employee[city]'][type='text']")
       response.should have_selector("input[name='employee[state]'][type='text']")
       response.should have_selector("input[name='employee[zip]'][type='text']")
-      response.should have_selector("input[name='employee[birthday]'][type='text']")
       response.should have_selector("input[name='employee[mobile_num]'][type='text']")
       response.should have_selector("input[name='employee[home_num]'][type='text']")
 

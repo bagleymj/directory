@@ -21,10 +21,6 @@ describe LocationsController do
       response.should have_selector("title", :content => " | Location List")
     end
 
-    it "should have the title in big letters on the page" do
-      get :index
-      response.should have_selector("h1", :content => "Location List")
-    end
 
   end
   describe "'new' location" do
@@ -35,10 +31,6 @@ describe LocationsController do
     it "should have the correct title" do
       get :new
       response.should have_selector("title", :content => " | Add Location")
-    end
-    it "should have title in big letters on the page" do
-      get :new
-      response.should have_selector("h1", :content => "Add Location")
     end
     it "should have a name field" do
       get :new
@@ -88,10 +80,6 @@ describe LocationsController do
       get :show, :id => @location.id
       response.should have_selector("title", :content => " | " + @location.name)
     end
-    it "should have the title in big letters at the top" do
-      get :show, :id => @location.id
-      response.should have_selector("h1", :content => @location.name)
-    end
   end
 
   describe "GET 'edit'" do
@@ -103,10 +91,6 @@ describe LocationsController do
     it "should have the right title" do
       get :edit, :id => @location.id
       response.should have_selector("title", :content => " | Edit " + @location.name)
-    end
-    it "should have the title in big letters at the top" do
-      get :edit, :id => @location.id
-      response.should have_selector("h1", :content => "Edit " + @location.name)
     end
     it "should have a name field" do
       get :edit, :id => @location.id

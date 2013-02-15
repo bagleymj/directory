@@ -2,11 +2,13 @@ class LocationsController < ApplicationController
   def index
     @title = "Location List"
     @locations = Location.all
+    @nav_id = 31029
   end
 
   def new
     @title = "Add Location"
     @location = Location.new
+    @nav_id = 31029
   end
 
   def create
@@ -22,11 +24,13 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @employees = @location.employees
     @title = @location.name
+    @nav_id = @location.id
   end
 
   def edit
     @location = Location.find(params[:id])
     @title = "Edit " + @location.name
+    @nav_id = @location.id
   end
 
   def update

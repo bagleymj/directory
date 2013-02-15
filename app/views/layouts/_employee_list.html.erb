@@ -32,7 +32,7 @@
                                                                 :action => :show, :id => employee.id %>
           </td>
           <td>
-            <%= employee.name %>
+            <%= link_to employee.name, :controller => :employees, :action => :show, :id => employee.id %>
           </td>
           <td>
             <%= employee.address1 + "\n" + employee.address2 %><br />
