@@ -1,12 +1,1 @@
-<% @employees.each do |employee| %>
-  <div class="row">
-    <div class="span6">
-      <%= link_to employee.first_name + " " + employee.last_name, :action => :show, :id => employee.id %>
-    </div>
-  </div>
-<% end %>
-<div class="row">
-  <div class="span4">
-    <%= link_to "Add New Employee", :action => :new %>
-  </div>
-</div>
+<%= render :partial => 'layouts/employee_list' %>
