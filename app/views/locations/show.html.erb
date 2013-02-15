@@ -18,6 +18,9 @@
     <table class="table table-striped">
       <tr>
         <th>
+          &nbsp;
+        </th>
+        <th>
           Employee
         </th>
         <th>
@@ -38,6 +41,10 @@
       </tr>
       <% @employees.each do |employee| %>
         <tr>
+          <td>
+            <%= link_to image_tag(employee .photo.url(:thumb)), :controller => :employees, 
+                                                                :action => :show, :id => employee.id %>
+          </td>
           <td>
             <%= employee.name %>
           </td>
