@@ -1,4 +1,7 @@
 <div class="row">
+  <div class="span2">
+    <%= link_to "PDF", url_for(request.params.merge(:format => :pdf)) %>
+  </div>
   <div class="span2 pull-right">
     <strong><%= @location.name %></strong><br />
     <%= @location.address1 + "\n" + @location.address2 %><br />

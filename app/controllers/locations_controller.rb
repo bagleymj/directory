@@ -25,6 +25,14 @@ class LocationsController < ApplicationController
     @employees = @location.employees
     @title = @location.name
     @nav_id = @location.id
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "directory",
+        :template => 'locations/show.pdf.html.erb'
+
+      end
+    end
   end
 
   def edit
