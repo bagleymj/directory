@@ -13,7 +13,7 @@
     <% if i == 0 || ((p * 6) / i) == 1 %><table style="height:100%, width:100%"><% p += 1 %><% end %>
       <% if i.even? %><tr style="height:33%"><% end %>
         <td style="width:50%">
-          <%= image_tag employee .photo.url %>
+          <%= wicked_pdf_image_tag employee .photo.url %>
           <table style="table table-striped table-condensed table-bordered">
             <tr>
               <th>
