@@ -1,1 +1,34 @@
-<h1>HEEEEY</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gresco Directory | <%= @title %></title>
+  <%= wicked_pdf_stylesheet_link_tag  "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% i = 0 %>
+  <% p = 1 %>
+  <% @employees.each do |employee| %>
+    <% if i == 0 || ((p * 6) / i) == 1 %><table style="height:100%, width:100%"><% p += 1 %><% end %>
+      <% if i.even? %><tr style="height:33%"><% end %>
+        <td style="width:50%">
+          <%= image_tag employee .photo.url %>
+          <table style="table table-striped table-condensed table-bordered">
+            <tr>
+              <th>
+                Name
+              </th>
+              <td>
+                <%= employee.name %>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <% i += 1 %>
+      <% if i.even? %></tr><% end %>
+    <% if ((p * 6) / i) == 1 %></table><% end %>
+  <% end %>
+</table>
+</body>
+</html>
