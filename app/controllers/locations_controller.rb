@@ -29,8 +29,9 @@ class LocationsController < ApplicationController
       format.html
       format.pdf do
         render :pdf => "directory",
-        :template => 'locations/show.pdf.html.erb'
-
+        :template => 'locations/show.pdf.html.erb',
+        :show_as_html => params[:debug].present?,
+        :margin => { :bottom => 0 }
       end
     end
   end
