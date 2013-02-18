@@ -10,10 +10,10 @@
   <% i = 0 %>
   <% p = 1 %>
   <% @employees.each do |employee| %>
-    <% if i == 0 || ((p * 6) / i) == 1 %><table style="width:100%"><% p += 1 %><% end %>
-      <% if i.even? %><tr style="height:20px"><% end %>
-        <td style="width:50%; height:33%; page-break-inside:avoid">
-          <%= wicked_pdf_image_tag employee .photo.url %>
+    <% if i == 0 || ((p * 6) / i) == 1 %><table style="width:100%"><% if  i != 0 %><% p += 1 %><% end %><% end %>
+      <% if i % 3 == 0 %><tr style="height:20px"><% end %>
+        <td style="width:33%; height:50%; page-break-inside:avoid">
+          <%= wicked_pdf_image_tag employee .photo.url(:thumb) %>
           <table class="table table-striped table-condensed table-bordered">
             <tr>
               <th style="width:50%">
@@ -43,7 +43,7 @@
           </table>
         </td>
         <% i += 1 %>
-      <% if i.even? %></tr><% end %>
+      <% if i % 3 == 0  %></tr><% end %>
     <% if ((p * 6) / i) == 1 %></table><% end %>
   <% end %>
 </body>
