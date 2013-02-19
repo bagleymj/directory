@@ -22,7 +22,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
-    @employees = @location.employees
+    @employees = @location.employees.all(:order => "last_name, first_name")
     @title = @location.name
     @nav_id = @location.id
     respond_to do |format|
@@ -31,7 +31,6 @@ class LocationsController < ApplicationController
         render :pdf => "directory",
         :template => 'locations/show.pdf.html.erb',
         :show_as_html => params[:debug].present?,
-        :margin => { :bottom => 0 }
       end
     end
   end

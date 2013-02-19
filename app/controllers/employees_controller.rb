@@ -1,13 +1,13 @@
 class EmployeesController < ApplicationController
   def index
     @title = "Employee List"
-    @employees = Employee.all
+    @employees = Employee.all(:order => "last_name, first_name")
     @nav_id = 31088
   end
 
   def new
     @title = "New Employee"
-    @employee = Employee.new
+    @employee = Employee.new(:location_id => params[:location_id])
     @nav_id = 31029
   end
 

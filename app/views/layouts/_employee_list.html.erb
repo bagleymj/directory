@@ -54,7 +54,8 @@
       <% end %>
       <tr>
         <td>
-          <%= link_to "Add New Employee", :controller => :employees, :action => :new %>
+          <% if @location.nil?; id = nil; else id = @location.id; end %>
+            <%= link_to "Add New Employee", :controller => :employees, :action => :new, :location_id => id %>
         </td>
         <td>
           &nbsp;
