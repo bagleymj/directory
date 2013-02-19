@@ -14,6 +14,13 @@
   </div>
 
   <div class="row">
+    <div class="span6">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="span4">
       <%= f.label :location_id %>
       <%= f.collection_select :location_id, Location.all, :id, :name, :prompt => true %>

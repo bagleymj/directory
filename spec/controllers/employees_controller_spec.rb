@@ -35,6 +35,7 @@ describe EmployeesController do
       response.should have_selector("input[name='employee[first_name]'][type='text']")
       response.should have_selector("input[name='employee[middle_name]'][type='text']")
       response.should have_selector("input[name='employee[last_name]'][type='text']")
+      response.should have_selector("input[name='employee[email]'][type='text']")
       response.should have_selector("input[name='employee[address1]'][type='text']")
       response.should have_selector("input[name='employee[address2]'][type='text']")
       response.should have_selector("input[name='employee[city]'][type='text']")
