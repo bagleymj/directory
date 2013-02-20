@@ -24,6 +24,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @title = @employee.name
     @nav_id = @employee.location_id
+    @family_members = @employee.family_members
   end
 
   def edit

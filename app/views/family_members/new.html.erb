@@ -1,11 +1,22 @@
-" ============================================================================
-" Netrw Directory Listing                                        (netrw v143)
-"   /home/bagleymj/Sites/directory/app/views/family_members
-"   Sorted by      name
-"   Sort sequence: [\/]$,\<core\%(\.\d\+\)\=\>,\.h$,\.c$,\.cpp$,\~\=\*$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$
-"   Quick Help: <F1>:help  -:go up dir  D:delete  R:rename  s:sort-by  x:exec
-" ============================================================================
-../
-edit.html.erb
-index.html.erb
-show.html.erb
+<table class="table table-condensed table-striped table-bordered">
+<%= form_for @family_member do |f| %>
+  <tr>
+    <td>
+      <%= f.text_field :first_name, :class => "span3" %>
+    </td>
+    <td>
+      <%= f.text_field :last_name, :class => "span3" %>
+    </td>
+    <td>
+      <%= f.select :relationship, ["Spouse","Child"], :class => "span1" %>
+    </td>
+    <td>
+      <%= f.date_select :birthday %>
+      <%= f.hidden_field :employee_id, :value => params[:employee_id] %>
+    </td>
+    <td>
+      <%= f.submit %>
+    </td>
+  </tr>
+<% end %>
+</table>

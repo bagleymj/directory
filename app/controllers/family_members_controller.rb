@@ -6,13 +6,14 @@ class FamilyMembersController < ApplicationController
 
   def new
     @title = "New Family Member"
-    @family_member = FamilyMember.new
+    @family_member = FamilyMember.new(:employee_id => params[:employee_id], 
+                                     :last_name => params[:last_name])
   end
 
   def create
     @family_member = FamilyMember.new(params[:family_member])
     if @family_member.save
-      redirect_to family_members_path
+      redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
     else
       render 'new'
     end

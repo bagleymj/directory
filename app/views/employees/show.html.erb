@@ -47,6 +47,56 @@
         </td>
       </tr>
     </table>
+    <h2>Family Members</h2>
+    <table class="table table-striped table-condensed table-bordered">
+      <thead>
+        <th>
+          Name
+        </th>
+        <th>
+          Relationship
+        </th>
+        <th>
+          Birthday
+        </th>
+        <th>
+          Actions
+        </th>
+      </thead>
+      <% @family_members.each do |family_member| %>
+        <tr>
+          <td>
+            <%= family_member.name %>
+          </td>
+          <td>
+            <%= family_member.relationship %>
+          </td>
+          <td>
+            <%= family_member.birthday %>
+          </td>
+          <td>
+            <%= link_to "Edit", :url => "#" %> |
+            <%= link_to "Delete", :url => "#" %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>
+          <%= link_to "Add New Family Member", :controller => :family_members,
+            :action => :new, :employee_id => @employee.id, 
+            :last_name => @employee.last_name %>
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 <div class="row">

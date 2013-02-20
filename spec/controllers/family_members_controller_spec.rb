@@ -33,14 +33,17 @@ describe FamilyMembersController do
   end
 
   describe "POST 'create'" do
+    before(:each) do
+      @employee = Factory(:employee)
+    end
     it "should create a new family_member" do
       lambda do
         post :create, :family_member => @attr
       end.should change(FamilyMember, :count).by(1)
     end
-    it "should redirect to family member index" do
+    it "should redirect to the employee it belongs to" do
       post :create, :family_member => @attr
-      response.should redirect_to family_members_path
+      response.should redirect_to :controller => :employees, :action => :show, :id => @attr[:employee_id]
     end
   end
 
