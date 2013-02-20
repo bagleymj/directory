@@ -1,6 +1,15 @@
 <div class="row">
   <div class="span4">
     <%= image_tag @employee .photo.url %>
+    <div class="row">
+      <div class="span1">
+        <%= link_to "Edit Employee", :action => :edit, :id => @employee.id %>
+      </div>
+      <div class="span1">
+        <%= link_to "Delete Employee", @employee, :method => :delete, :confirm => "Really?",
+                                                                     :title => "Delete #{@employee.name}" %>
+      </div>
+    </div>
   </div>
   <div class="span6">
     <table class="table table-striped table-condensed table-bordered">
@@ -75,8 +84,10 @@
             <%= family_member.birthday %>
           </td>
           <td>
-            <%= link_to "Edit", :url => "#" %> |
-            <%= link_to "Delete", :url => "#" %>
+            <%= link_to "Edit", :controller => :family_members, :action => :edit, :id => family_member.id, 
+              :location_id => @employee.location_id, :employee_id => family_member.employee_id %> |
+              <%= link_to "Delete", family_member, :controller => :family_members, :method => :delete,
+                          :confirm => "Really delete #{family_member.name}?", :title => "You sure?" %>
           </td>
         </tr>
       <% end %>
@@ -84,7 +95,7 @@
         <td>
           <%= link_to "Add New Family Member", :controller => :family_members,
             :action => :new, :employee_id => @employee.id, 
-            :last_name => @employee.last_name %>
+            :last_name => @employee.last_name, :location_id => @employee.location_id %>
         </td>
         <td>
           &nbsp;
@@ -99,12 +110,4 @@
     </table>
   </div>
 </div>
-<div class="row">
-  <div class="span1">
-    <%= link_to "Edit Employee", :action => :edit, :id => @employee.id %>
-  </div>
-  <div class="span1">
-    <%= link_to "Delete Employee", @employee, :method => :delete, :confirm => "Really?",
-                                                                  :title => "Delete #{@employee.name}" %>
-  </div>
 </div>

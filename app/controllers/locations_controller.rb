@@ -2,13 +2,13 @@ class LocationsController < ApplicationController
   def index
     @title = "Location List"
     @locations = Location.all
-    @nav_id = 31029
+    @nav_id = "admin"
   end
 
   def new
     @title = "Add Location"
     @location = Location.new
-    @nav_id = 31029
+    @nav_id = "admin"
   end
 
   def create

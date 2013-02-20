@@ -30,6 +30,11 @@ describe FamilyMembersController do
       get :new
       response.should have_selector("title", :content => "New Family Member")
     end
+    it "should have the right form fields" do
+      get :new
+      response.should have_selector("input[name='family_member[first_name]'][type='text']")
+      response.should have_selector("input[name='family_member[last_name]'][type='text']")
+    end
   end
 
   describe "POST 'create'" do
@@ -73,6 +78,11 @@ describe FamilyMembersController do
       get :edit, :id => @family_member.id
       response.should have_selector(:title, :content => " | Edit #{@family_member.name}")
     end
+    it "should have the right form fields" do
+      get :edit, :id => @family_member.id
+      response.should have_selector("input[name='family_member[first_name]'][type='text']")
+      response.should have_selector("input[name='family_member[last_name]'][type='text']")
+    end
   end
 
   describe "PUT 'update'" do
@@ -87,6 +97,10 @@ describe FamilyMembersController do
       @family_member.relationship.should== @attr[:relationship]
       @family_member.employee_id.should == @attr[:employee_id]
     end
+    it "should redirect to the user it belongs to" do
+      put :update, :id => @family_member.id, :family_member => @attr
+      response.should redirect_to :controller => :employees, :action => :show, :id => @attr[:employee_id]
+    end
   end
 
   describe "DELETE 'destroy'" do
@@ -100,7 +114,7 @@ describe FamilyMembersController do
     end
     it "should redirect to family member list" do
       delete :destroy, :id => @family_member.id
-      response.should redirect_to family_members_path
+      response.should redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
     end
 
   end

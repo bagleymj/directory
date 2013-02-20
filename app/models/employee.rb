@@ -1,6 +1,6 @@
 class Employee < ActiveRecord::Base
   attr_accessible :address1, :address2, :city, :location_id, :state, :zip, :first_name, :last_name,
-    :middle_name, :birthday, :mobile_num, :home_num, :hire_date, :photo
+    :middle_name, :birthday, :mobile_num, :home_num, :hire_date, :photo, :email
 
   belongs_to :location
   has_many :family_members

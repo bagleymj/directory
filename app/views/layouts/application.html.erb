@@ -19,7 +19,7 @@
     <div class="row">
       <div class="span2">
         <ul class="nav nav-pills nav-stacked">
-          <li<% if @nav_id == 31088 %> class="active"<% end %>>
+          <li<% if @nav_id == "all" %> class="active"<% end %>>
             <%= link_to "All Employees", root_path %>
           </li>
           <% Location.all.each do |location| %>
@@ -28,7 +28,7 @@
             </li>
           <% end %>
           <li class="divider">&nbsp;</li>
-          <li<% if @nav_id == 31029 %> class="active"<% end %>><%= link_to "Admin", locations_path %></li>
+          <li<% if @nav_id == "admin" %> class="active"<% end %>><%= link_to "Admin", locations_path %></li>
         </ul>
       </div>
       <div class="span10">

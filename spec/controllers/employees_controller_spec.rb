@@ -118,7 +118,7 @@ describe EmployeesController do
 
       it "should redirect to the employee list" do
         put :update, :id => @employee.id, :employee => @attr
-        response.should redirect_to employees_path
+        response.should redirect_to :action => :show, :id => @employee.id
       end
     end
   end

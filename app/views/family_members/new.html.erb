@@ -1,22 +1,7 @@
-<table class="table table-condensed table-striped table-bordered">
+<%= render 'table_header' %>
 <%= form_for @family_member do |f| %>
-  <tr>
-    <td>
-      <%= f.text_field :first_name, :class => "span3" %>
-    </td>
-    <td>
-      <%= f.text_field :last_name, :class => "span3" %>
-    </td>
-    <td>
-      <%= f.select :relationship, ["Spouse","Child"], :class => "span1" %>
-    </td>
-    <td>
-      <%= f.date_select :birthday %>
-      <%= f.hidden_field :employee_id, :value => params[:employee_id] %>
-    </td>
-    <td>
-      <%= f.submit %>
-    </td>
-  </tr>
+
+  <%= render 'form', :f => f %>
+
 <% end %>
-</table>
+<%= render 'table_footer' %>

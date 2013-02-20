@@ -1,0 +1,18 @@
+  <tr>
+    <td>
+      <%= f.text_field :first_name, :class => "span2" %>
+    </td>
+    <td>
+      <%= f.text_field :last_name, :class => "span2" %>
+    </td>
+    <td>
+      <%= f.select :relationship, ["Spouse","Child"], :class => "span2" %>
+    </td>
+    <td>
+      <%= f.date_select :birthday, :class => "span2" %>
+        <%= f.hidden_field :employee_id, :value => params[:employee_id] %>
+    </td>
+    <td>
+      <%= f.submit %>
+    </td>
+  </tr>
