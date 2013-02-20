@@ -2,6 +2,7 @@ Directory::Application.routes.draw do
 
   resources :locations
   resources :employees
+  resources :family_members
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

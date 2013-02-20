@@ -19,5 +19,13 @@ Factory.define :employee do |employee|
   employee.birthday     '1/21/2010'
   employee.mobile_num   "555-555-5555"
   employee.home_num     "555-555-5555"
+  employee.location_id  1
+end
 
+Factory.define :family_member do |family_member|
+  family_member.first_name    "Test"
+  family_member.last_name     "Wife"
+  family_member.birthday      '1/1/1983'
+  family_member.employee_id   1
+  family_member.relationship  "Spouse"
 end

@@ -3,6 +3,7 @@ class Employee < ActiveRecord::Base
     :middle_name, :birthday, :mobile_num, :home_num, :hire_date, :photo
 
   belongs_to :location
+  has_many :family_members
 
   def name
     first_name + " " + last_name
