@@ -5,9 +5,10 @@ describe EmployeesController do
   render_views
 
   before(:each) do
-    @attr = { :first_name => "Test", :last_name => "Employee", :middle_name => "Dee", :address1 => "Address", 
+    @attr = { :first_name => "Test", :last_name => "Employee", :address1 => "Address", 
       :address2 => "", :city => "Macon", :state => "GA", :zip => "99999", :birthday => '1/1/1990',
-      :mobile_num => "555-555-5555", :home_num => "555-555-5555" }
+      :mobile_num => "555-555-5555", :home_num => "555-555-5555", :job_title => "Purchasing",
+      :extension => "5678", :email => "gmail@email.net" }
   end
 
   describe "GET 'index'" do
@@ -33,7 +34,6 @@ describe EmployeesController do
     it "should have the correct form fields" do
       get :new
       response.should have_selector("input[name='employee[first_name]'][type='text']")
-      response.should have_selector("input[name='employee[middle_name]'][type='text']")
       response.should have_selector("input[name='employee[last_name]'][type='text']")
       response.should have_selector("input[name='employee[email]'][type='text']")
       response.should have_selector("input[name='employee[address1]'][type='text']")
@@ -43,6 +43,8 @@ describe EmployeesController do
       response.should have_selector("input[name='employee[zip]'][type='text']")
       response.should have_selector("input[name='employee[home_num]'][type='text']")
       response.should have_selector("input[name='employee[mobile_num]'][type='text']")
+      response.should have_selector("input[name='employee[extension]'][type='text']")
+      response.should have_selector("input[name='employee[job_title]'][type='text']")
     end
   end
 
@@ -85,25 +87,23 @@ describe EmployeesController do
     it "should have the correct form fields" do
       get :edit, :id => @employee.id
       response.should have_selector("input[name='employee[first_name]'][type='text']")
-      response.should have_selector("input[name='employee[middle_name]'][type='text']")
       response.should have_selector("input[name='employee[last_name]'][type='text']")
+      response.should have_selector("input[name='employee[email]'][type='text']")
       response.should have_selector("input[name='employee[address1]'][type='text']")
       response.should have_selector("input[name='employee[address2]'][type='text']")
       response.should have_selector("input[name='employee[city]'][type='text']")
       response.should have_selector("input[name='employee[state]'][type='text']")
       response.should have_selector("input[name='employee[zip]'][type='text']")
-      response.should have_selector("input[name='employee[mobile_num]'][type='text']")
       response.should have_selector("input[name='employee[home_num]'][type='text']")
-
+      response.should have_selector("input[name='employee[mobile_num]'][type='text']")
+      response.should have_selector("input[name='employee[extension]'][type='text']")
+      response.should have_selector("input[name='employee[job_title]'][type='text']")
     end
   end
 
   describe "PUT 'update'" do
     before { @employee = Factory(:employee) }
     describe "success" do
-      before { @attr = {:first_name => "Test", :last_name => "Person", :middle_name => "Eff", :address1 => "1 Street", 
-        :address2 => "12", :city => "WR", :state => "GA", :zip => "12345", :birthday => '1/1/1991',
-        :home_num => "777-777-7777", :mobile_num => "777-777-7777"} }
       
       it "should change the employee's attributes" do
         put :update, :id => @employee.id, :employee => @attr

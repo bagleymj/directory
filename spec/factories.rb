@@ -9,7 +9,6 @@ end
 
 Factory.define :employee do |employee|
   employee.first_name   "Test"
-  employee.middle_name  "The"
   employee.last_name    "Employee"
   employee.address1     "122 Main Street"
   employee.address2     ""
@@ -20,6 +19,9 @@ Factory.define :employee do |employee|
   employee.mobile_num   "555-555-5555"
   employee.home_num     "555-555-5555"
   employee.location_id  1
+  employee.email        "employee@email.com"
+  employee.extension    "1234"
+  employee.job_title    "Sales"
 end
 
 Factory.define :family_member do |family_member|

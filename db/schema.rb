@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220150118) do
+ActiveRecord::Schema.define(:version => 20130220204648) do
 
   create_table "employees", :force => true do |t|
     t.string   "first_name"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20130220150118) do
     t.string   "mobile_num"
     t.string   "home_num"
     t.integer  "location_id"
-    t.string   "middle_name"
     t.string   "last_name"
     t.date     "hire_date"
     t.string   "photo_file_name"
@@ -34,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20130220150118) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "email"
+    t.string   "extension"
+    t.string   "job_title"
   end
 
   create_table "family_members", :force => true do |t|
