@@ -21,6 +21,23 @@ describe Employee do
     }
     @employee = Employee.new(@attr)
   end
+  subject { @employee }
+  it { should respond_to(:first_name) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:address1) }
+  it { should respond_to(:address2) }
+  it { should respond_to(:city) }
+  it { should respond_to(:state) }
+  it { should respond_to(:zip) }
+  it { should respond_to(:mobile_num) }
+  it { should respond_to(:home_num) }
+  it { should respond_to(:birthday) }
+  it { should respond_to(:hire_date) }
+  it { should respond_to(:location_id) }
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:extension) }
+  it { should respond_to(:job_title) }
 
   it "should create a new Employee, given valid attributes" do
     Employee.create!(@attr)
@@ -77,21 +94,24 @@ describe Employee do
     unemployed.should_not be_valid
   end
 
-  subject { @employee }
-  it { should respond_to(:first_name) }
-  it { should respond_to(:last_name) }
-  it { should respond_to(:address1) }
-  it { should respond_to(:address2) }
-  it { should respond_to(:city) }
-  it { should respond_to(:state) }
-  it { should respond_to(:zip) }
-  it { should respond_to(:mobile_num) }
-  it { should respond_to(:home_num) }
-  it { should respond_to(:birthday) }
-  it { should respond_to(:hire_date) }
-  it { should respond_to(:location_id) }
-  it { should respond_to(:name) }
-  it { should respond_to(:email) }
-  it { should respond_to(:extension) }
-  it { should respond_to(:job_title) }
+  it "should reject first names that are too long" do
+    long_first_name = "a" * 21
+    long_first_named_employee = Employee.new(@attr.merge(:first_name => long_first_name))
+    long_first_named_employee.should_not be_valid
+  end
+
+  it "should reject last names that are too long" do
+    long_last_name = "b" * 21
+    long_last_named_employee = Employee.new(@attr.merge(:last_name => long_last_name))
+    long_last_named_employee.should_not be_valid
+  end
+
+  it "should reject zip codes that are not in the correct format" do
+    codes = ["310","a1234","123456"]
+    codes.each do |code|
+      bad_zip = Employee.new(@attr.merge(:zip => code))
+      bad_zip.should_not be_valid
+    end
+  end
+
 end

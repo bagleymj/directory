@@ -11,9 +11,13 @@ class Employee < ActiveRecord::Base
 
   has_attached_file :photo, :styles => { :thumb => "81x108" }
 
-  validates :first_name,    :presence => true
+  zip_regex = /\A\d{5}\z/
 
-  validates :last_name,     :presence => true
+  validates :first_name,    :presence => true,
+                            :length   => {:maximum => 20}
+
+  validates :last_name,     :presence => true,
+                            :length   => {:maximum => 20}
 
   validates :email,         :presence => true
 
@@ -27,7 +31,8 @@ class Employee < ActiveRecord::Base
 
   validates :state,         :presence => true
 
-  validates :zip,           :presence => true
+  validates :zip,           :presence => true,
+                            :format   => { :with => zip_regex }
 
   validates :birthday,      :presence => true
 
