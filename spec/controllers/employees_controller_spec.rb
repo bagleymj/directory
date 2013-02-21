@@ -6,9 +6,9 @@ describe EmployeesController do
 
   before(:each) do
     @attr = { :first_name => "Test", :last_name => "Employee", :address1 => "Address", 
-      :address2 => "", :city => "Macon", :state => "GA", :zip => "99999", :birthday => '1/1/1990',
-      :mobile_num => "555-555-5555", :home_num => "555-555-5555", :job_title => "Purchasing",
-      :extension => "5678", :email => "gmail@email.net" }
+      :address2 => "", :city => "Macon", :state => "GA", :zip => "99999", :birthday => '1990-1-1',
+      :hire_date => '2004-1-1', :mobile_num => "555-555-5555", :home_num => "555-555-5555", :job_title => "Purchasing",
+      :extension => "5678", :email => "gmail@email.net", :location_id => 1 }
   end
 
   describe "GET 'index'" do

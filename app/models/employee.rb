@@ -11,4 +11,26 @@ class Employee < ActiveRecord::Base
 
   has_attached_file :photo, :styles => { :thumb => "81x108" }
 
+  validates :first_name,    :presence => true
+
+  validates :last_name,     :presence => true
+
+  validates :email,         :presence => true
+
+  validates :location_id,   :presence => true
+
+  validates :job_title,     :presence => true
+
+  validates :address1,      :presence => true
+
+  validates :city,          :presence => true
+
+  validates :state,         :presence => true
+
+  validates :zip,           :presence => true
+
+  validates :birthday,      :presence => true
+
+  validates :hire_date,     :presence => true
+
 end
