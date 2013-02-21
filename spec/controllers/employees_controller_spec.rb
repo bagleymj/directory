@@ -49,17 +49,41 @@ describe EmployeesController do
   end
 
   describe "POST 'create'" do
-    it "should add a new record" do
-      lambda do
+    describe "failure" do
+      before (:each) do
+        @attr = {
+          :first_name => "",
+          :last_name => ""}
+      end
+      it "should render the 'new' page" do
         post :create, :employee => @attr
-      end.should change(Employee, :count).by(1)
+        response.should render_template(:new)
+      end
+
+      it "should have the right title" do
+        post :create, :employee => @attr
+        response.should have_selector("title", :content => "New Employee")
+      end
     end
 
-    it "should redirect to employee list" do
-      post :create, :employee => @attr
-      response.should redirect_to employees_path
-    end
+    describe "success" do
 
+      it "should add a new record" do
+        lambda do
+          post :create, :employee => @attr
+        end.should change(Employee, :count).by(1)
+      end
+
+      it "should redirect to employee list" do
+        post :create, :employee => @attr
+        response.should redirect_to employees_path
+      end
+
+      it "should have a flash message" do
+        post :create, :employee => @attr
+        flash[:success].should =~ /employee saved/i
+      end
+    end
   end
 
   describe "GET 'show'" do

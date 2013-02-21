@@ -33,6 +33,12 @@
       </div>
       <div class="span10">
 
+        <section class="round">
+          <% flash.each do |key, value| %>
+            <%= content_tag( :div, value, :class => "flash #{key}") %>
+          <% end %>
+        </section>
+
         <%= yield %>
 
       </div>

@@ -18,9 +18,11 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(params[:employee])
     if @employee.save
+      flash[:success] = "Employee saved."
       redirect_to employees_path
     else
       render :new
+      @title = "New Employee"
     end
   end
 
