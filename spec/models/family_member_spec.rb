@@ -11,6 +11,11 @@ describe FamilyMember do
     }
     @family_member = FamilyMember.new(@attr)
   end
+
+  it "should create a new family member given valid attributes" do
+    FamilyMember.create!(@attr)
+  end
+
   subject {@family_member}
   it {should respond_to(:first_name)}
   it {should respond_to(:last_name)}
