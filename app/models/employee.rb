@@ -11,7 +11,9 @@ class Employee < ActiveRecord::Base
 
   has_attached_file :photo, :styles => { :thumb => "81x108" }
 
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   zip_regex = /\A\d{5}\z/
+  phone_regex = /\A\({0,1}\d{3}[\)\-\.]{0,1}\d{3}[\-}\.]{0,1}\d{4}\z/
 
   validates :first_name,    :presence => true,
                             :length   => {:maximum => 20}
@@ -19,17 +21,24 @@ class Employee < ActiveRecord::Base
   validates :last_name,     :presence => true,
                             :length   => {:maximum => 20}
 
-  validates :email,         :presence => true
+  validates :email,         :presence => true,
+                            :format   => {:with => email_regex}
 
   validates :location_id,   :presence => true
 
-  validates :job_title,     :presence => true
+  validates :job_title,     :presence => true,
+                            :length   => {:maximum => 20}
 
-  validates :address1,      :presence => true
+  validates :address1,      :presence => true,
+                            :length   => {:maximum => 60}
 
-  validates :city,          :presence => true
+  validates :address2,      :length   => {:maximum => 60}
 
-  validates :state,         :presence => true
+  validates :city,          :presence => true,
+                            :length   => {:maximum => 20}
+
+  validates :state,         :presence => true,
+                            :length   => {:maximum => 2}
 
   validates :zip,           :presence => true,
                             :format   => { :with => zip_regex }
@@ -37,5 +46,15 @@ class Employee < ActiveRecord::Base
   validates :birthday,      :presence => true
 
   validates :hire_date,     :presence => true
+
+  validates :mobile_num,    :format => { :with => phone_regex },
+                            :allow_blank => true
+
+  validates :home_num,      :format => { :with => phone_regex },
+                            :allow_blank => true
+
+  validates :extension,     :numericality => true,
+                            :allow_blank => true,
+                            :length   => {:maximum => 10}
 
 end

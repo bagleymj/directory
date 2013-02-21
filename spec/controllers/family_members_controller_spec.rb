@@ -4,7 +4,7 @@ describe FamilyMembersController do
 
   before(:each) do
     @attr = { :first_name => "Little", :last_name => "Kid", 
-      :birthday => '1/1/2005', :employee_id => 1, 
+      :birthday => '2005-1-1', :employee_id => 1, 
       :relationship => "Child" }
   end
 

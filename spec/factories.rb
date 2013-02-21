@@ -28,7 +28,7 @@ end
 Factory.define :family_member do |family_member|
   family_member.first_name    "Test"
   family_member.last_name     "Wife"
-  family_member.birthday      '1/1/1983'
+  family_member.birthday      '1983-1-1'
   family_member.employee_id   1
   family_member.relationship  "Spouse"
 end

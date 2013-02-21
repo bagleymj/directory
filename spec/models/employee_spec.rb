@@ -106,12 +106,118 @@ describe Employee do
     long_last_named_employee.should_not be_valid
   end
 
+  it "should reject email address that are not in the correct format" do
+    bad_addresses = ["bagley.com","bongos@vegas", "dudes@castle.brow1"]
+    bad_addresses.each do |address|
+      bad_address_employee = Employee.new(@attr.merge(:email => address))
+      bad_address_employee.should_not be_valid
+    end
+  end
+
+  it "should accept email addresses that are valid" do
+    good_addresses = ["bagleymj@gmail.com","cox@9-pages.co.uk","animal-lover@cox.net"]
+    good_addresses.each do |address|
+      good_address_employee = Employee.new(@attr.merge(:email => address))
+      good_address_employee.should be_valid
+    end
+  end
+
   it "should reject zip codes that are not in the correct format" do
     codes = ["310","a1234","123456"]
     codes.each do |code|
       bad_zip = Employee.new(@attr.merge(:zip => code))
       bad_zip.should_not be_valid
     end
+  end
+
+  it "should accept zip codes that are in the correct format" do
+    codes = ["90210","31088","31029"]
+    codes.each do |code|
+      good_zip = Employee.new(@attr.merge(:zip => code))
+      good_zip.should be_valid
+    end
+  end
+
+  it "should reject job titles that are too long" do
+    long_title = "a" * 21
+    long_title_employee = Employee.new(@attr.merge(:job_title => long_title))
+    long_title_employee.should_not be_valid
+  end
+
+  it "should reject line 1 addresses that are too long" do
+    long_address = "a" * 61
+    long_address_employee = Employee.new(@attr.merge(:address1 => long_address))
+    long_address_employee.should_not be_valid
+  end
+
+  it "should reject cities that are too long" do
+    long_city = "a" * 21
+    long_city_employee = Employee.new(@attr.merge(:city => long_city))
+    long_city_employee.should_not be_valid
+  end
+
+  it "should reject states that are too long" do
+    long_state = "a" * 3
+    long_state_employee = Employee.new(@attr.merge(:state => long_state))
+    long_state_employee.should_not be_valid
+  end
+
+  it "should reject phone numbers that aren't in the right format" do
+    bad_numbers = ["911","55555555555","478x361x3592"]
+    bad_numbers.each do |number|
+      bad_mobile_num = Employee.new(@attr.merge(:mobile_num => number))
+      bad_mobile_num.should_not be_valid
+      bad_home_num = Employee.new(@attr.merge(:home_num => number))
+      bad_home_num.should_not be_valid
+    end
+  end
+
+  it "should accept phone numbers that are in the right format" do
+    good_numbers = ["(478)361-3592","478-542-0315","4783150872"]
+    good_numbers.each do |number|
+      good_mobile_num = Employee.new(@attr.merge(:mobile_num => number))
+      good_mobile_num.should be_valid
+      good_home_num = Employee.new(@attr.merge(:home_num => number))
+      good_home_num.should be_valid
+    end
+  end
+
+  it "should accept phone numbers that are blank" do
+    phoneless_employee = Employee.new(@attr.merge(:mobile_num => "", :home_num => ""))
+    phoneless_employee.should be_valid
+  end
+
+  it "should reject line 2 of addresses that are too long" do
+    long_address = "a" * 61
+    long_address_employee = Employee.new(@attr.merge(:address2 => long_address))
+    long_address_employee.should_not be_valid
+  end
+
+  it "should reject extensions that are not numerical" do
+    bad_extensions = ["extension","447a","ABCD"]
+    bad_extensions.each do |extension|
+      bad_extension_employee = Employee.new(@attr.merge(:extension => extension))
+      bad_extension_employee.should_not be_valid
+    end
+  end
+
+  it "should accept extensions that are numerical" do
+    good_extensions = ["55555","9876","12345678"]
+    good_extensions.each do |extension|
+      good_extension_employee = Employee.new(@attr.merge(:extension => extension))
+      good_extension_employee.should be_valid
+    end
+  end
+
+  it "should accept extensions that are blank" do
+    blank_extension_employee = Employee.new(@attr.merge(:extension => ""))
+    blank_extension_employee.should be_valid
+  end
+
+  it "should reject extensions that are too long" do
+    long_extension = "123456789123"
+    long_extension_employee = Employee.new(@attr.merge(:extension => long_extension))
+    long_extension_employee.should_not be_valid
   end
 
 end
