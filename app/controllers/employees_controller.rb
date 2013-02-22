@@ -21,8 +21,9 @@ class EmployeesController < ApplicationController
       flash[:success] = "Employee saved."
       redirect_to employees_path
     else
-      render :new
       @title = "New Employee"
+      @nav_id = "admin"
+      render :new
     end
   end
 
@@ -42,9 +43,10 @@ class EmployeesController < ApplicationController
   def update
     @employee = Employee.find(params[:id])
     if @employee.update_attributes(params[:employee])
+      flash[:success] = "Employee updated."
       redirect_to :action => :show, :id => @employee.id
     else
-      @title = "Edit " + @employee.name
+      @title = "Edit Employee"
       render :edit
     end
   end
@@ -52,6 +54,7 @@ class EmployeesController < ApplicationController
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy
+    flash[:success] = "Employee deleted."
     redirect_to employees_path
   end
 end

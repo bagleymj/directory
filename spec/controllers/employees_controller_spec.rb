@@ -126,7 +126,30 @@ describe EmployeesController do
   end
 
   describe "PUT 'update'" do
-    before { @employee = Factory(:employee) }
+    before(:each) do
+      @employee = Factory(:employee)
+    end
+    
+    describe "failure" do
+      before(:each) do
+        @attr = {
+          :first_name => "",
+          :last_name => ""
+        }
+      end
+
+      it "should render the 'edit' page" do
+        put :update, :id => @employee.id, :employee => @attr
+        response.should render_template(:edit)
+      end
+
+      it "should have the right title" do
+        put :update, :id => @employee.id, :employee => @attr
+        response.should have_selector("title", :content => " | Edit Employee")
+      end
+
+    end
+    
     describe "success" do
       
       it "should change the employee's attributes" do
@@ -144,6 +167,11 @@ describe EmployeesController do
         put :update, :id => @employee.id, :employee => @attr
         response.should redirect_to :action => :show, :id => @employee.id
       end
+
+      it "should have a flash message" do
+        put :update, :id => @employee.id, :employee => @attr
+        flash[:success].should =~ /employee updated/i
+      end
     end
   end
 
@@ -157,6 +185,10 @@ describe EmployeesController do
     it "should redirect to the employee list" do
       delete :destroy, :id => @employee.id
       response.should redirect_to employees_path
+    end
+    it "should have a flash message" do
+      delete :destroy, :id => @employee.id
+      flash[:success].should =~ /employee deleted/i
     end
   end
 end
