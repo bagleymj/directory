@@ -1,1 +1,14 @@
 @import "bootstrap";
+
+$greenSoftLight: #cdff7f;
+$greenBoldLight: #2da725;
+
+.flash {
+  font-weight:bold;
+  text-align:center;
+}
+.success {
+  background-color: $greenSoftLight;
+  color: $greenBoldLight;
+}
+
