@@ -59,14 +59,35 @@ describe LocationsController do
   end
 
   describe "post 'create' location" do
-    it "should add a new location" do
-      lambda do
+    describe "failure" do
+      before(:each) do
+        @attr = {
+          :name => ""
+        }
+      end
+      it "should render the 'new' page" do
         post :create, :location => @attr
-      end.should change(Location, :count).by(1)
+        response.should render_template(:new)
+      end
+      it "should have the right title" do
+        post :create, :location => @attr
+        response.should have_selector("title", :content => " | Add Location")
+      end
     end
-    it "should redirect to location list" do
-      post :create, :location => @attr
-      response.should redirect_to locations_path
+    describe "success" do
+      it "should add a new location" do
+        lambda do
+          post :create, :location => @attr
+        end.should change(Location, :count).by(1)
+      end
+      it "should redirect to location list" do
+        post :create, :location => @attr
+        response.should redirect_to locations_path
+      end
+      it "should have a flash message" do
+        post :create, :location => @attr
+        flash[:success].should =~ /location added/i
+      end
     end
   end
 
@@ -120,6 +141,21 @@ describe LocationsController do
 
   describe "PUT 'update'" do
     before { @location = Factory(:location) }
+    describe "failure" do
+      before(:each) do
+        @attr = {
+          :name => ""
+        }
+        it "should render the 'edit' page" do
+          put :update, :id => @location.id, :location => @attr
+          response.should render_template(:edit)
+        end
+        it "should have the right title" do
+          put :update, :id => @location.id, :location => @attr
+          response.should have_selector("title", :content => "Edit Location")
+        end
+      end
+    end
     describe "success" do
 
       before { @attr = { :name => "New Name", :address1 => "New Address", :address2 => "New 2nd Address", 
@@ -139,9 +175,11 @@ describe LocationsController do
         put :update, :id => @location.id, :location => @attr
         response.should redirect_to locations_path
       end
-
+      it "should have a flash message" do
+        put :update, :id => @location.id, :location => @attr
+        flash[:success].should =~ /location updated/i
+      end
     end
-
   end
 
   describe "DELETE 'destroy'" do
@@ -156,6 +194,11 @@ describe LocationsController do
     it "should redirect to the location list" do
       delete :destroy, :id => @location.id
       response.should redirect_to locations_path
+    end
+
+    it "should have a flash message" do
+      delete :destroy, :id => @location.id
+      flash[:success].should =~ /location deleted/i
     end
   end
 

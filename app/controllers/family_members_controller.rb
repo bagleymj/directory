@@ -14,8 +14,11 @@ class FamilyMembersController < ApplicationController
   def create
     @family_member = FamilyMember.new(params[:family_member])
     if @family_member.save
+      flash[:success] = "Family member created."
       redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
     else
+      @title = "New Family Member"
+      @nav_id = "admin"
       render 'new'
     end
   end
@@ -35,16 +38,19 @@ class FamilyMembersController < ApplicationController
     @family_member = FamilyMember.find(params[:id])
     if @family_member.update_attributes(params[:family_member])
       @family_member.reload
+      flash[:success] = "Family member updated."
       redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
     else
+      @nav_id = "admin"
+      @title = "Edit Family Member"
       render 'edit'
-      @title = "Edit #{@family_member.name}"
     end
   end
 
   def destroy
     @family_member = FamilyMember.find(params[:id])
     @family_member.destroy
+    flash[:success] = "Family member deleted."
     redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
   end
 

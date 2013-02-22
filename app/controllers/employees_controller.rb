@@ -47,6 +47,11 @@ class EmployeesController < ApplicationController
       redirect_to :action => :show, :id => @employee.id
     else
       @title = "Edit Employee"
+      if @employee.location_id.nil?
+        @nav_id = "admin"
+      else
+        @nav_id = "location_id"
+      end
       render :edit
     end
   end

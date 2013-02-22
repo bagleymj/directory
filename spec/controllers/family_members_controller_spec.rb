@@ -41,14 +41,35 @@ describe FamilyMembersController do
     before(:each) do
       @employee = Factory(:employee)
     end
-    it "should create a new family_member" do
-      lambda do
+    describe "failure" do
+      before(:each) do
+        @attr = {
+          :first_name => ""
+        }
+      end
+      it "should render the 'new' page" do
         post :create, :family_member => @attr
-      end.should change(FamilyMember, :count).by(1)
+        response.should render_template(:new)
+      end
+      it "should have the correct title" do
+        post :create, :family_member => @attr
+        response.should have_selector("title", :content => "New Family Member")
+      end
     end
-    it "should redirect to the employee it belongs to" do
-      post :create, :family_member => @attr
-      response.should redirect_to :controller => :employees, :action => :show, :id => @attr[:employee_id]
+    describe "success" do
+      it "should create a new family_member" do
+        lambda do
+          post :create, :family_member => @attr
+        end.should change(FamilyMember, :count).by(1)
+      end
+      it "should redirect to the employee it belongs to" do
+        post :create, :family_member => @attr
+        response.should redirect_to :controller => :employees, :action => :show, :id => @attr[:employee_id]
+      end
+      it "should have a flash message" do
+        post :create, :family_member => @attr
+        flash[:success].should =~ /family member created/i
+      end
     end
   end
 
@@ -89,17 +110,38 @@ describe FamilyMembersController do
     before(:each) do
       @family_member = Factory(:family_member)
     end
-    it "should change the family member's attributes" do
-      put :update, :id => @family_member.id, :family_member => @attr
-      @family_member.reload
-      @family_member.first_name.should == @attr[:first_name]
-      @family_member.last_name.should == @attr[:last_name]
-      @family_member.relationship.should== @attr[:relationship]
-      @family_member.employee_id.should == @attr[:employee_id]
+    describe "failure" do
+      before(:each) do
+        @attr = {
+          :first_name => ""
+        }
+      end
+      it "should render the 'edit' page" do
+        put :update, :id => @family_member.id, :family_member => @attr
+        response.should render_template(:edit)
+      end
+      it "should have the correct title" do
+        put :update, :id => @family_member.id, :family_member => @attr
+        response.should have_selector("title", :content => "Edit Family Member")
+      end
     end
-    it "should redirect to the user it belongs to" do
-      put :update, :id => @family_member.id, :family_member => @attr
-      response.should redirect_to :controller => :employees, :action => :show, :id => @attr[:employee_id]
+    describe "success" do
+      it "should change the family member's attributes" do
+        put :update, :id => @family_member.id, :family_member => @attr
+        @family_member.reload
+        @family_member.first_name.should == @attr[:first_name]
+        @family_member.last_name.should == @attr[:last_name]
+        @family_member.relationship.should== @attr[:relationship]
+        @family_member.employee_id.should == @attr[:employee_id]
+      end
+      it "should redirect to the user it belongs to" do
+        put :update, :id => @family_member.id, :family_member => @attr
+        response.should redirect_to :controller => :employees, :action => :show, :id => @attr[:employee_id]
+      end
+      it "should have a flash message" do
+        put :update, :id => @family_member.id, :family_member => @attr
+        flash[:success].should =~ /family member updated/i
+      end
     end
   end
 
@@ -116,7 +158,10 @@ describe FamilyMembersController do
       delete :destroy, :id => @family_member.id
       response.should redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
     end
-
+    it "should have a flash message" do
+      delete :destroy, :id => @family_member.id
+      flash[:success].should =~ /family member deleted/i
+    end
   end
 
 end
