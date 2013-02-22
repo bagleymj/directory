@@ -6,18 +6,18 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body style="padding-top:50px">
+<body>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <%= link_to "Gresco Directory", root_path, :class => "brand" %>
+        <%= link_to "GRESCO DIRECTORY", root_path, :class => "brand" %>
       </div>
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="span2">
+  <div class="container fill">
+    <div class="row fill">
+      <div class="span2 sidebar">
         <ul class="nav nav-pills nav-stacked">
           <li<% if @nav_id == "all" %> class="active"<% end %>>
             <%= link_to "All Employees", root_path %>
@@ -31,15 +31,22 @@
           <li<% if @nav_id == "admin" %> class="active"<% end %>><%= link_to "Admin", locations_path %></li>
         </ul>
       </div>
-      <div class="span10">
+      <div class="span2">
+        &nbsp;
+      </div>
+      <div class="span10 fill page-content">
+        <div class="row" style="padding-top:40px">
+          &nbsp;
+        </div>
 
-        <section class="round">
-          <% flash.each do |key, value| %>
-            <%= content_tag( :div, value, :class => "flash #{key}") %>
-          <% end %>
-        </section>
+          <section class="round">
+            <% flash.each do |key, value| %>
+              <%= content_tag( :div, value, :class => "flash #{key}") %>
+            <% end %>
+          </section>
 
-        <%= yield %>
+          <%= yield %>
+
 
       </div>
     </div>
