@@ -36,7 +36,8 @@ a {
 
 .page-content {
   background-color:white;
-  overflow:auto;
+  height:100%;
+  display:table;
 }
 
 .nav-pills {
