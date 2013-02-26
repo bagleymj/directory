@@ -23,6 +23,7 @@ end
 
 group :development do
   gem 'rspec-rails'
+  gem 'wkhtmltopdf-binary'
 end
 
 group :test do

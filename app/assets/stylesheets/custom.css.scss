@@ -106,10 +106,10 @@ a {
 
 .pdf-page {
   display:table;
-  height:11in;
-  width:8.5in;
-  margin:auto;
+  height:100%;
+  width:100%;
   page-break-after:always;
+  background-color:white;
 }
 
 .page-layout {

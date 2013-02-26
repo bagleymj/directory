@@ -15,34 +15,43 @@
         <table class="pdf-page">
         <% p += 1 %><% end %>
       <% if i % 3 == 0 %><tr><% end %>
-        <td style="width:33%; height:50%">
-          <%= image_tag employee .photo.url(:thumb) %>
-          <table class="table table-striped table-condensed table-bordered">
+        <td style="width:33%">
+          <table class="page-layout">
             <tr>
-              <th>
-                Name
-              </th>
               <td>
-                <%= employee.name %>
+                <%= wicked_pdf_image_tag employee .photo.url %>
               </td>
             </tr>
             <tr>
-              <th>
-                id
-              </th>
               <td>
-                <%= i %>
+                <table class="table table-striped table-condensed table-bordered">
+                  <tr>
+                    <th>
+                      Name
+                    </th>
+                    <td>
+                      <%= employee.name %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      id
+                    </th>
+                    <td>
+                      <%= i %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      page
+                    </th>
+                    <td>
+                      <%= p %>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
-            <tr>
-              <th>
-                page
-              </th>
-              <td>
-                <%= p %>
-              </td>
-            </tr>
-
           </table>
         </td>
         <% i += 1 %>
