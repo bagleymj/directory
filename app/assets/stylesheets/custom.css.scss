@@ -5,8 +5,16 @@ $greenBoldLight: #2da725;
 $redGresco: #b50021;
 $beige: #fff9a9;
 
+* {
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+
 body {
   background-color:$beige;
+  padding-top:50px
 }
 
 html, body {
@@ -30,19 +38,13 @@ a {
 }
 
 .sidebar {
-  position:fixed;
-  top:50px;
+  position:fixed
 }
 
 .page-content {
   background-color:white;
   height:100%;
   display:table;
-  padding-left:5px;
-  padding-right:5px;
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
-  box-sizing:border-box;
 }
 
 .nav-pills {
