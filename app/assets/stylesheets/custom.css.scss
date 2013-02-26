@@ -103,3 +103,17 @@ a {
 .navbar-inner {
   background-image:linear-gradient(to bottom, #663333, $redGresco);
 }
+
+.pdf-page {
+  display:table;
+  height:11in;
+  width:8.5in;
+  margin:auto;
+  page-break-after:always;
+}
+
+.page-layout {
+  display:table;
+  height:100%;
+  width:100%;
+}

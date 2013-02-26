@@ -3,15 +3,6 @@
 <head>
   <title>Gresco Directory | <%= @title %></title>
   <%= wicked_pdf_stylesheet_link_tag  "application" %>
-  <style type='text/css'>
-    .pdf-layout {
-      width:100%;
-    }
-    .page-break {
-      display:block;
-      clear:both;
-      page-break-after:always;
-  </style>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -19,13 +10,16 @@
   <% i = 0 %>
   <% p = 0 %>
   <% @employees.each do |employee| %>
-    <% if i % 6 == 0 %><table class="pdf-layout"><% p += 1 %><% end %>
+    <% if i % 6 == 0 %>
+      <div class="pdf-page">
+        <table class="pdf-page">
+        <% p += 1 %><% end %>
       <% if i % 3 == 0 %><tr><% end %>
         <td style="width:33%; height:50%">
-          <%= wicked_pdf_image_tag employee .photo.url(:thumb) %>
+          <%= image_tag employee .photo.url(:thumb) %>
           <table class="table table-striped table-condensed table-bordered">
             <tr>
-              <th style="width:50%">
+              <th>
                 Name
               </th>
               <td>
@@ -54,7 +48,8 @@
         <% i += 1 %>
       <% if i % 3 == 0  %></tr><% end %>
     <% if i % 6 == 0 %></table>
-    <div class="page-break"></div><% end %>
+  </div>
+   <% end %>
   <% end %>
   <% if i % 6 != 0 %>
     <% until i % 6 == 0 do %>
@@ -64,8 +59,10 @@
           </td>
           <% i += 1 %>
         <% if i % 3 == 0 %></tr><% end %>
-      <% if i % 6 == 0 %></table><% end %>
+      <% if i % 6 == 0 %></table>
+    </div><% end %>
     <% end %>
   <% end %>
+</div>
 </body>
 </html>
