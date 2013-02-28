@@ -33,7 +33,8 @@ class LocationsController < ApplicationController
       format.pdf do
         render :pdf => "directory",
         :template => 'locations/show.pdf.html.erb',
-        :show_as_html => params[:debug].present?
+        :show_as_html => params[:debug].present?,
+	:wkhtmltopdf => '/home/helpdesk/.rvm/gems/ruby-2.0.0-p0/bin/wkhtmltopdf'
       end
     end
   end
