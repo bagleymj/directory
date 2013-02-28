@@ -33,7 +33,7 @@ class LocationsController < ApplicationController
       format.pdf do
         render :pdf => "directory",
         :template => 'locations/show.pdf.html.erb',
-        :show_as_html => params[:debug].present?,
+        :show_as_html => params[:debug].present?
       end
     end
   end

@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'bootstrap-sass'
 gem 'paperclip', '~> 3.0'
+gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
 # Bundle edge Rails instead:
@@ -23,7 +24,6 @@ end
 
 group :development do
   gem 'rspec-rails'
-  gem 'wkhtmltopdf-binary'
 end
 
 group :test do
