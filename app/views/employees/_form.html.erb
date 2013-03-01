@@ -47,12 +47,13 @@
     </div>
     <div class="row">
       <div class="span5">
-        <%= f.label :birthday  %>
-        <%= f.date_select :birthday, :class => "span5"  %>
+        <%= f.label :birthday %>
+        <%= f.date_select :birthday, :start_year => 1930, 
+          :class => "span5"  %>
       </div>
       <div class="span5">
         <%= f.label :hire_date  %>
-        <%= f.date_select :hire_date, :class => "span5"  %>
+        <%= f.date_select :hire_date, :start_year => 1960, :class => "span5"  %>
       </div>
     </div>
     <div class="row">

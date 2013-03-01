@@ -1,7 +1,7 @@
 
-<div class="row">
-  <div class="span10">
-    <table class="table table-striped list">
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped">
       <tr>
         <th>
           &nbsp;
@@ -13,16 +13,7 @@
           Address
         </th>
         <th>
-          Home Phone
-        </th>
-        <th>
-          Mobile Phone
-        </th>
-        <th>
-          Birthday
-        </th>
-        <th>
-          Hire Date
+          Contact
         </th>
       </tr>
       <% @employees.each do |employee| %>
@@ -39,16 +30,18 @@
             <%= employee.city + ", " + employee.state + " " + employee.zip %>
           </td>
           <td>
-            <%= employee.home_num %>
-          </td>
-          <td>
-            <%= employee.mobile_num %>
-          </td>
-          <td>
-            <%= employee.birthday %>
-          </td>
-          <td>
-            <%= employee.hire_date %>
+            <% unless employee.email.blank? %>
+              <abbr title="email">e:</abbr> <%= mail_to employee.email %><br />
+            <% end %>
+            <% unless employee.home_num.blank? %>
+              <abbr title="home">h:</abbr> <%= employee.home_num %><br />
+            <% end %>
+            <% unless employee.mobile_num.blank? %>
+              <abbr title="mobile">m:</abbr> <%= employee.mobile_num %><br />
+            <% end %>
+            <% unless employee.extension.blank? %>
+              <abbr title="extension">x:</abbr> <%= employee.extension %>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -56,15 +49,6 @@
         <td>
           <% if @location.nil?; id = nil; else id = @location.id; end %>
             <%= link_to "Add New Employee", :controller => :employees, :action => :new, :location_id => id %>
-        </td>
-        <td>
-          &nbsp;
-        </td>
-        <td>
-          &nbsp;
-        </td>
-        <td>
-          &nbsp;
         </td>
         <td>
           &nbsp;

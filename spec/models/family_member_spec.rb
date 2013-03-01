@@ -23,6 +23,7 @@ describe FamilyMember do
   it {should respond_to(:relationship)}
   it {should respond_to(:employee_id)}
   it {should respond_to(:name)}
+  it {should respond_to(:age)}
 
   it "should require a first name" do
     no_first_name = FamilyMember.new(@attr.merge(:first_name => ""))

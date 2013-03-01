@@ -9,6 +9,18 @@ class Employee < ActiveRecord::Base
     first_name + " " + last_name
   end
 
+  def age
+    now = Time.now.utc.to_date
+    now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+  end
+
+  def service_time
+    now = Time.now.utc.to_date
+    now.year - hire_date.year - (hire_date.to_date.change(:year => now.year) > now ? 1 : 0)
+  end
+
+  
+
   has_attached_file :photo, :styles => { :thumb => "81x108" }
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -94,11 +94,6 @@ a {
   }
 }
 
-.list {
-  margin-left:auto;
-  margin-right:auto;
-  width:95%;
-}
 
 .navbar-inner {
   background-image:linear-gradient(to bottom, #663333, $redGresco);
@@ -126,7 +121,18 @@ a {
 }
 
 .show {
-  width:90%;
+  width:95%;
   margin-left:auto;
   margin-right:auto;
+}
+
+.namebadge {
+  text-align:center;
+  div {
+    margin-bottom:15px;
+  }
+  h5 {
+    padding:0px;
+    margin:0px;
+  }
 }

@@ -1,37 +1,44 @@
-  <div class="row">
-    <div class="span6">
-      <%= f.label :name %>
-      <%= f.text_field :name, :class => "span6" %>
+<div class="row">
+  <div class="span1">
+    &nbsp;
+  </div>
+  <div class="span9">
+    <div class="row">
+      <div class="span6">
+        <%= f.label :name %>
+        <%= f.text_field :name, :class => "span6" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <%= f.label :address1 %>
+        <%= f.text_field :address1, :class => "span8" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <%= f.label :address2 %>
+        <%= f.text_field :address2, :class => "span8" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span5">
+        <%= f.label :city %>
+        <%= f.text_field :city, :class => "span5" %>
+      </div>
+      <div class="span1">
+        <%= f.label :state %>
+        <%= f.text_field :state, :class => "span1" %>
+      </div>
+      <div class="span2">
+        <%= f.label :zip %>
+        <%= f.text_field :zip, :class => "span2" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        <%= f.submit %>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="span8">
-      <%= f.label :address1 %>
-      <%= f.text_field :address1, :class => "span8" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span8">
-      <%= f.label :address2 %>
-      <%= f.text_field :address2, :class => "span8" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span6">
-      <%= f.label :city %>
-      <%= f.text_field :city, :class => "span6" %>
-    </div>
-    <div class="span2">
-      <%= f.label :state %>
-      <%= f.text_field :state, :class => "span2" %>
-    </div>
-    <div class="span2">
-      <%= f.label :zip %>
-      <%= f.text_field :zip, :class => "span2" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span4">
-      <%= f.submit %>
-    </div>
-  </div>
+</div>

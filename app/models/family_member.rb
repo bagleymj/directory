@@ -6,6 +6,11 @@ class FamilyMember < ActiveRecord::Base
   def name
     first_name + " " + last_name
   end
+  
+  def age
+    now = Time.now.utc.to_date
+    now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+  end
 
   validates :first_name,    :presence   => true,
                             :length     => {:maximum => 20}
