@@ -14,11 +14,11 @@
       <div class="pdf-page">
         <table class="pdf-page">
         <% p += 1 %><% end %>
-      <% if i % 3 == 0 %><tr><% end %>
+      <% if i % 3 == 0 %><tr class="pdf-row"><% end %>
         <td style="width:33%">
           <table class="page-layout">
             <tr>
-              <td>
+              <td class="center">
                 <%= wicked_pdf_image_tag employee .photo.url %>
               </td>
             </tr>
@@ -35,18 +35,38 @@
                   </tr>
                   <tr>
                     <th>
-                      id
+                      Address
                     </th>
                     <td>
-                      <%= i %>
+                      <%= employee.address1 %><br />
+                      <% unless employee.address2.blank? %>
+                        <%= employee.address2 %><br />
+                      <% end %>
+                      <%= employee.city %>, <%= employee.state %> <%= employee.zip %>
                     </td>
                   </tr>
                   <tr>
                     <th>
-                      page
+                      Email
                     </th>
                     <td>
-                      <%= p %>
+                      <%= employee.email %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Home
+                    </th>
+                    <td>
+                      <%= employee.home_num %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Mobile
+                    </th>
+                    <td>
+                      <%= employee.mobile_num %>
                     </td>
                   </tr>
                 </table>

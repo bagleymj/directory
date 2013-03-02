@@ -118,6 +118,20 @@ a {
   height:100%;
   width:100%;
   vertical-align:bottom;
+  font-size:8pt;
+  img {
+    text-align:center;
+  }
+}
+
+.center {
+  text-align:center;
+}
+
+.pdf-row {
+  display:table;
+  width:100%;
+  height:5.25in;
 }
 
 .show {
