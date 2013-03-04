@@ -20,7 +20,7 @@ class Employee < ActiveRecord::Base
   end
 
   def spouse
-    family_members.where(:relationship => ["Husband", "Wife"]).limit(1)
+    family_members.where(:relationship => ["Husband", "Wife", "Spouse"]).limit(1)
   end
 
   def children

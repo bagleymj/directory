@@ -16,13 +16,13 @@
     <div class="row">
       <div class="span2">
         <%= f.label :relationship %>
-        <%= f.select :relationship, ["Husband","Wife","Son","Daughter"], :class => "span2" %>
+        <%= f.select :relationship, ["Spouse","Son","Daughter"], :class => "span2" %>
       </div>
     </div>
     <div class="row">
       <div class="span8">
         <%= f.label :birthday %>
-        <%= f.date_select :birthday, :class => "span8" %>
+        <%= f.date_select :birthday, :start_year => 1930, :class => "span8" %>
         <%= f.hidden_field :employee_id, :value => params[:employee_id] %>
       </div>
     </div>

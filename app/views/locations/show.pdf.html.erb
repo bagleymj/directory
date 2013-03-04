@@ -36,7 +36,7 @@
                   <strong>Hired:</strong> <%= employee.hire_date %>
                 </div>
                 <% unless employee.family_members.empty? %>
-                  <table class="table table-striped table-condensed table-bordered">
+                  <table class="table table-striped table-condensed table-bordered family-list">
                     <tr>
                       <th>
                         Relation
@@ -61,7 +61,7 @@
                         </td>
                       </tr>
                     <% end %>
-                    <% employee.children.each do |child| %>
+                    <% employee.children.limit(12).each do |child| %>
                       <tr>
                         <td>
                           <%= child.relationship %>
