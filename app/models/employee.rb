@@ -19,6 +19,14 @@ class Employee < ActiveRecord::Base
     now.year - hire_date.year - (hire_date.to_date.change(:year => now.year) > now ? 1 : 0)
   end
 
+  def spouse
+    family_members.where(:relationship => ["Husband", "Wife"]).limit(1)
+  end
+
+  def children
+    family_members.where(:relationship => ["Son", "Daughter"]).order('birthday desc')
+  end
+
   
 
   has_attached_file :photo, :styles => { :thumb => "81x108" }

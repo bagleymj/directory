@@ -48,7 +48,7 @@
                         DOB
                       </th>
                     </tr>
-                    <% employee.family_members.where(:relationship => ["Husband","Wife"]).each do |spouse| %>
+                    <% employee.spouse.each do |spouse| %>
                       <tr>
                         <td>
                           <%= spouse.relationship %>
@@ -61,7 +61,7 @@
                         </td>
                       </tr>
                     <% end %>
-                    <% employee.family_members.where(:relationship => ["Son","Daughter"]).order("birthday desc").each do |child| %>
+                    <% employee.children.each do |child| %>
                       <tr>
                         <td>
                           <%= child.relationship %>

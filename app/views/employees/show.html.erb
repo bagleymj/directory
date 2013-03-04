@@ -100,30 +100,47 @@
           Actions
         </th>
       </thead>
-      <% @family_members.each do |family_member| %>
+      <% @employee.spouse.each do |spouse| %>
         <tr>
           <td>
-            <%= family_member.name %>
+            <%= spouse.name %>
           </td>
           <td>
-            <%= family_member.relationship %>
+            <%= spouse.relationship %>
           </td>
           <td>
-            <% if family_member.relationship == "Son" || 
-              family_member.relationship == "Daughter" %>
-              <%= family_member.age %>
-            <% else %>
               &nbsp;
-            <% end %>
           </td>
           <td>
-            <%= family_member.birthday %>
+            <%= spouse.birthday %>
           </td>
           <td>
-            <%= link_to "Edit", :controller => :family_members, :action => :edit, :id => family_member.id, 
-              :location_id => @employee.location_id, :employee_id => family_member.employee_id %> |
-              <%= link_to "Delete", family_member, :controller => :family_members, :method => :delete,
-                          :confirm => "Really delete #{family_member.name}?", :title => "You sure?" %>
+            <%= link_to "Edit", :controller => :family_members, :action => :edit, :id => spouse.id, 
+              :location_id => @employee.location_id, :employee_id => spouse.employee_id %> |
+              <%= link_to "Delete", spouse, :controller => :family_members, :method => :delete,
+                          :confirm => "Really delete #{spouse.name}?", :title => "You sure?" %>
+          </td>
+        </tr>
+      <% end %>
+      <% @employee.children.each do |child| %>
+        <tr>
+          <td>
+            <%= child.name %>
+          </td>
+          <td>
+            <%= child.relationship %>
+          </td>
+          <td>
+            <%= child.age %>
+          </td>
+          <td>
+            <%= child.birthday %>
+          </td>
+          <td>
+            <%= link_to "Edit", :controller => :family_members, :action => :edit, :id => child.id, 
+              :location_id => @employee.location_id, :employee_id => child.employee_id %> |
+              <%= link_to "Delete", child, :controller => :family_members, :method => :delete,
+                          :confirm => "Really delete #{child.name}?", :title => "You sure?" %>
           </td>
         </tr>
       <% end %>

@@ -40,6 +40,8 @@ describe Employee do
   it { should respond_to(:job_title) }
   it { should respond_to(:age) }
   it { should respond_to(:service_time) }
+  it { should respond_to(:spouse) }
+  it { should respond_to(:children) }
 
   it "should create a new Employee, given valid attributes" do
     Employee.create!(@attr)
