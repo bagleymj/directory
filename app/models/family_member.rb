@@ -12,6 +12,14 @@ class FamilyMember < ActiveRecord::Base
     now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
   end
 
+  def generation
+    if relationship == "Spouse"
+      return relationship
+    else
+      return "Child"
+    end
+  end
+
   validates :first_name,    :presence   => true,
                             :length     => {:maximum => 20}
 

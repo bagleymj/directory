@@ -24,59 +24,49 @@
             </tr>
             <tr>
               <td>
+                <strong><%= employee.name %></strong><br />
+                <%= employee.job_title %>-<%= employee.location.name %><br />
+                <%= employee.city %>, <%= employee.state %><br />
+                <strong>DOB:</strong> <%= employee.birthday %><br />
+                <strong>Hired:</strong> <%= employee.hire_date %><br />
                 <table class="table table-striped table-condensed table-bordered">
                   <tr>
                     <th>
+                      Relationship
+                    </th>
+                    <th>
                       Name
                     </th>
-                    <td>
-                      <%= employee.name %>
-                    </td>
-                  </tr>
-                  <tr>
                     <th>
-                      Address
-                    </th>
-                    <td>
-                      <%= employee.address1 %><br />
-                      <% unless employee.address2.blank? %>
-                        <%= employee.address2 %><br />
-                      <% end %>
-                      <%= employee.city %>, <%= employee.state %> <%= employee.zip %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
-                      Email
-                    </th>
-                    <td>
-                      <%= employee.email %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
-                      Home
-                    </th>
-                    <td>
-                      <%= employee.home_num %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
-                      Mobile
-                    </th>
-                    <td>
-                      <%= employee.mobile_num %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>
+                      DOB
                     </th>
                   </tr>
-                  <tr>
-                    <th>
-                    </th>
-                  </tr>
+                  <% employee.family_members.where(:relationship => "Spouse").each do |spouse| %>
+                    <tr>
+                      <td>
+                        <%= spouse.relationship %>
+                      </td>
+                      <td>
+                        <%= spouse.name %>
+                      </td>
+                      <td>
+                        <%= spouse.birthday %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  <% employee.family_members.where('relationship != "Spouse" ORDER BY birthday DESC').each do |child| %>
+                    <tr>
+                      <td>
+                        <%= child.relationship %>
+                      </td>
+                      <td>
+                        <%= child.name %>
+                      </td>
+                      <td>
+                        <%= child.birthday %>
+                      </td>
+                    </tr>
+                  <% end %>
                 </table>
               </td>
             </tr>
