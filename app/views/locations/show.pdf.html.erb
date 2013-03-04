@@ -18,56 +18,64 @@
         <td style="width:33%">
           <table class="page-layout">
             <tr>
-              <td class="center">
+              <td class="photo-row">
                 <%= wicked_pdf_image_tag employee .photo.url %>
               </td>
             </tr>
             <tr>
-              <td>
-                <strong><%= employee.name %></strong><br />
-                <%= employee.job_title %>-<%= employee.location.name %><br />
-                <%= employee.city %>, <%= employee.state %><br />
-                <strong>DOB:</strong> <%= employee.birthday %><br />
-                <strong>Hired:</strong> <%= employee.hire_date %><br />
-                <table class="table table-striped table-condensed table-bordered">
-                  <tr>
-                    <th>
-                      Relationship
-                    </th>
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      DOB
-                    </th>
-                  </tr>
-                  <% employee.family_members.where(:relationship => "Spouse").each do |spouse| %>
+              <td class="info-row">
+                <div>
+                  <strong><%= employee.name %></strong>
+                </div>
+                <div class="left-info">
+                  <%= employee.job_title %>-<%= employee.location.name %><br />
+                  <%= employee.city %>, <%= employee.state %>
+                </div>
+                <div class="right-info">
+                  <strong>DOB:</strong> <%= employee.birthday %><br />
+                  <strong>Hired:</strong> <%= employee.hire_date %>
+                </div>
+                <% unless employee.family_members.empty? %>
+                  <table class="table table-striped table-condensed table-bordered">
                     <tr>
-                      <td>
-                        <%= spouse.relationship %>
-                      </td>
-                      <td>
-                        <%= spouse.name %>
-                      </td>
-                      <td>
-                        <%= spouse.birthday %>
-                      </td>
+                      <th>
+                        Relation
+                      </th>
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        DOB
+                      </th>
                     </tr>
-                  <% end %>
-                  <% employee.family_members.where('relationship != "Spouse" ORDER BY birthday DESC').each do |child| %>
-                    <tr>
-                      <td>
-                        <%= child.relationship %>
-                      </td>
-                      <td>
-                        <%= child.name %>
-                      </td>
-                      <td>
-                        <%= child.birthday %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </table>
+                    <% employee.family_members.where(:relationship => ["Husband","Wife"]).each do |spouse| %>
+                      <tr>
+                        <td>
+                          <%= spouse.relationship %>
+                        </td>
+                        <td>
+                          <%= spouse.name %>
+                        </td>
+                        <td>
+                          <%= spouse.birthday %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% employee.family_members.where(:relationship => ["Son","Daughter"]).order("birthday desc").each do |child| %>
+                      <tr>
+                        <td>
+                          <%= child.relationship %>
+                        </td>
+                        <td>
+                          <%= child.name %>
+                        </td>
+                        <td>
+                          <%= child.birthday %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                <% end %>
               </td>
             </tr>
           </table>
