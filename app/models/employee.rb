@@ -20,11 +20,11 @@ class Employee < ActiveRecord::Base
   end
 
   def spouse
-    family_members.where(:relationship => ["Husband", "Wife", "Spouse"]).limit(1)
+    family_members.where(:relationship => "Spouse")
   end
 
   def children
-    family_members.where(:relationship => ["Son", "Daughter"]).order('birthday desc')
+    family_members.where(:relationship => ["Son", "Daughter"]).order('birthday')
   end
 
   
