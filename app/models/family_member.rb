@@ -29,7 +29,9 @@ class FamilyMember < ActiveRecord::Base
   validates :birthday,      :presence   => true
 
   validates :relationship,  :presence   => true,
-                            :inclusion  => {:in => %w(Spouse Child Son Daughter Husband Wife)}
+                            :inclusion  => {:in => %w(Spouse Son Daughter)},
+                            :uniqueness => {:scope => :employee_id,
+                              :message => "We don't condone polygamy."}
 
   validates :employee_id,   :presence   => true
 

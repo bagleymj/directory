@@ -5,7 +5,7 @@ describe FamilyMember do
     @attr = {
       :first_name => "Little",
       :last_name => "Baby",
-      :relationship => "Child",
+      :relationship => "Son",
       :birthday => '2010-10-26',
       :employee_id => 1
     }
@@ -72,10 +72,16 @@ describe FamilyMember do
   end
 
   it "should accept relationships that are valid" do
-    normal_relationships = ["Child", "Spouse", "Son", "Daughter", "Husband", "Wife"]
+    normal_relationships = ["Spouse", "Son", "Daughter"]
     normal_relationships.each do |relationship|
       normal_family_member = FamilyMember.new(@attr.merge(:relationship => relationship))
       normal_family_member.should be_valid
     end
+  end
+
+  it "should not allow more an employee to have more than once spouse" do
+    first_wife = Factory(:family_member)
+    second_wife = FamilyMember.new(@attr.merge(:relationship => "Spouse"))
+    second_wife.should_not be_valid
   end
 end

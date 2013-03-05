@@ -57,7 +57,7 @@
                           <%= spouse.name %>
                         </td>
                         <td>
-                          <%= spouse.birthday %>
+                          <%= strip_year(spouse.birthday) %>
                         </td>
                       </tr>
                     <% end %>

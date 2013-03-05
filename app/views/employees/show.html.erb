@@ -112,7 +112,7 @@
               &nbsp;
           </td>
           <td>
-            <%= spouse.birthday %>
+            <%= strip_year(spouse.birthday) %>
           </td>
           <td>
             <%= link_to "Edit", :controller => :family_members, :action => :edit, :id => spouse.id, 
