@@ -5,17 +5,18 @@ gem 'bootstrap-sass'
 gem 'paperclip', '~> 3.0'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem 'mysql'
+gem 'mysql2'
+gem 'activerecord-mysql-adapter'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :production do
-  gem 'pg'
   gem 'wkhtmltopdf-heroku'
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'guard-rspec','1.2.1'
   gem 'spork', '0.9.2'
