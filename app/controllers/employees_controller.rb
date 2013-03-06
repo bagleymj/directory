@@ -23,6 +23,7 @@ class EmployeesController < ApplicationController
     else
       @title = "New Employee"
       @nav_id = "admin"
+      flash[:error] = @employee.errors.full_messages
       render :new
     end
   end

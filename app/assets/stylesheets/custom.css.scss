@@ -78,14 +78,12 @@ a {
   }
 }
 
-.flash {
-  font-weight:bold;
-  text-align:center;
+.alert-success {
+  width:95%;
+  margin-left:auto;
+  margin-right:auto;
 }
-.success {
-  background-color: $greenSoftLight;
-  color: $greenBoldLight;
-}
+
 .field_with_errors {
   color:red;
   

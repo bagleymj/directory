@@ -18,7 +18,8 @@ class FamilyMembersController < ApplicationController
       redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
     else
       @title = "New Family Member"
-      @nav_id = "admin"
+      @employee = Employee.find(@family_member.employee_id)
+      @nav_id = @employee.location.id
       render 'new'
     end
   end
@@ -41,8 +42,9 @@ class FamilyMembersController < ApplicationController
       flash[:success] = "Family member updated."
       redirect_to :controller => :employees, :action => :show, :id => @family_member.employee_id
     else
-      @nav_id = "admin"
       @title = "Edit Family Member"
+      @employee = Employee.find(@family_member.employee_id)
+      @nav_id = @employee.location.id
       render 'edit'
     end
   end

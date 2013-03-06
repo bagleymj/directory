@@ -3,6 +3,19 @@
     &nbsp;
   </div>
   <div class="span9">
+    <% if @family_member.errors.full_messages.any? %>
+      <div class="alert alert-block alert-error">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <h4>Please correct the following errors:</h4>
+        <ul>
+          <% @family_member.errors.full_messages.each do |error| %>
+            <li>
+              <%= error %>
+            </li>
+          <%end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="row">
       <div class="span3">
         <%= f.label :first_name %>
@@ -23,7 +36,11 @@
       <div class="span8">
         <%= f.label :birthday %>
         <%= f.date_select :birthday, :start_year => 1930, :class => "span8" %>
-        <%= f.hidden_field :employee_id, :value => params[:employee_id] %>
+        <% if @family_member.employee_id.nil? %>
+          <%= f.hidden_field :employee_id, :value => params[:employee_id] %>
+        <% else %>
+          <%= f.hidden_field :employee_id %>
+        <% end %>
       </div>
     </div>
     <div class="row">

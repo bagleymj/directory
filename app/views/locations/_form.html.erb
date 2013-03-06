@@ -2,7 +2,20 @@
   <div class="span1">
     &nbsp;
   </div>
-  <div class="span9">
+  <div class="span8">
+    <% if @location.errors.full_messages.any? %>
+      <div class="alert alert-block alert-error">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <h4>Please correct the following errors:</h4>
+        <ul>
+          <% @location.errors.full_messages.each do |error| %>
+            <li>
+              <%= error %>
+            </li>
+          <%end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="row">
       <div class="span6">
         <%= f.label :name %>
