@@ -33,7 +33,7 @@ class Employee < ActiveRecord::Base
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   zip_regex = /\A\d{5}\z/
-  phone_regex = /\A\({0,1}\d{3}[\)\-\.]{0,1}\d{3}[\-}\.]{0,1}\d{4}\z/
+  phone_regex = /\A\({0,1}\d{3}[\)\-\.]{0,1}\s{0,1}\d{3}[\-}\.]{0,1}\d{4}\z/
 
   validates :first_name,    :presence => true,
                             :length   => {:maximum => 20}
@@ -47,7 +47,7 @@ class Employee < ActiveRecord::Base
   validates :location_id,   :presence => true
 
   validates :job_title,     :presence => true,
-                            :length   => {:maximum => 20}
+                            :length   => {:maximum => 50}
 
   validates :address1,      :presence => true,
                             :length   => {:maximum => 60}

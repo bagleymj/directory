@@ -143,7 +143,7 @@ describe Employee do
   end
 
   it "should reject job titles that are too long" do
-    long_title = "a" * 21
+    long_title = "a" * 51
     long_title_employee = Employee.new(@attr.merge(:job_title => long_title))
     long_title_employee.should_not be_valid
   end
