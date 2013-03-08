@@ -7,7 +7,8 @@ describe EmployeesController do
   before(:each) do
     @attr = { :first_name => "Test", :last_name => "Employee", :address1 => "Address", 
       :address2 => "", :city => "Macon", :state => "GA", :zip => "99999", :birthday => '1990-1-1',
-      :hire_date => '2004-1-1', :mobile_num => "555-555-5555", :home_num => "555-555-5555", :job_title => "Purchasing",
+      :hire_date => '2004-1-1', :company_cell => "555-555-5555", 
+      :personal_cell => "555-555-5555", :home_num => "555-555-5555", :job_title => "Purchasing",
       :extension => "5678", :email => "gmail@email.net", :location_id => 1 }
   end
 
@@ -42,7 +43,8 @@ describe EmployeesController do
       response.should have_selector("input[name='employee[state]'][type='text']")
       response.should have_selector("input[name='employee[zip]'][type='text']")
       response.should have_selector("input[name='employee[home_num]'][type='text']")
-      response.should have_selector("input[name='employee[mobile_num]'][type='text']")
+      response.should have_selector("input[name='employee[company_cell]'][type='text']")
+      response.should have_selector("input[name='employee[personal_cell]'][type='text']")
       response.should have_selector("input[name='employee[extension]'][type='text']")
       response.should have_selector("input[name='employee[job_title]'][type='text']")
     end
@@ -119,7 +121,8 @@ describe EmployeesController do
       response.should have_selector("input[name='employee[state]'][type='text']")
       response.should have_selector("input[name='employee[zip]'][type='text']")
       response.should have_selector("input[name='employee[home_num]'][type='text']")
-      response.should have_selector("input[name='employee[mobile_num]'][type='text']")
+      response.should have_selector("input[name='employee[company_cell]'][type='text']")
+      response.should have_selector("input[name='employee[personal_cell]'][type='text']")
       response.should have_selector("input[name='employee[extension]'][type='text']")
       response.should have_selector("input[name='employee[job_title]'][type='text']")
     end

@@ -39,8 +39,11 @@
             <% unless employee.home_num.blank? %>
               <abbr title="home">h:</abbr> <%= employee.home_num %><br />
             <% end %>
-            <% unless employee.mobile_num.blank? %>
-              <abbr title="mobile">m:</abbr> <%= employee.mobile_num %><br />
+            <% unless employee.company_cell.blank? %>
+              <abbr title="company cell">c:</abbr> <%= employee.company_cell %><br />
+            <% end %>
+            <% unless employee.personal_cell.blank? %>
+              <abbr title="personal cell">c:</abbr> <%= employee.personal_cell %><br />
             <% end %>
             <% unless employee.extension.blank? %>
               <abbr title="extension">x:</abbr> <%= employee.extension %>

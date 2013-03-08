@@ -14,7 +14,8 @@ describe Employee do
       :state => "GA",
       :zip => "54321",
       :home_num => "555-555-5555",
-      :mobile_num => "444-444-4444",
+      :personal_cell => "444-444-4444",
+      :company_cell => "333-333-3333",
       :extension => "1234",
       :birthday => '1983-6-21',
       :hire_date => '2005-1-1'
@@ -29,7 +30,7 @@ describe Employee do
   it { should respond_to(:city) }
   it { should respond_to(:state) }
   it { should respond_to(:zip) }
-  it { should respond_to(:mobile_num) }
+  it { should_not respond_to(:mobile_num) }
   it { should respond_to(:home_num) }
   it { should respond_to(:birthday) }
   it { should respond_to(:hire_date) }
@@ -42,6 +43,8 @@ describe Employee do
   it { should respond_to(:service_time) }
   it { should respond_to(:spouse) }
   it { should respond_to(:children) }
+  it { should respond_to(:personal_cell) }
+  it { should respond_to(:company_cell) }
 
   it "should create a new Employee, given valid attributes" do
     Employee.create!(@attr)
@@ -169,8 +172,10 @@ describe Employee do
   it "should reject phone numbers that aren't in the right format" do
     bad_numbers = ["911","55555555555","478x361x3592"]
     bad_numbers.each do |number|
-      bad_mobile_num = Employee.new(@attr.merge(:mobile_num => number))
-      bad_mobile_num.should_not be_valid
+      bad_personal_cell = Employee.new(@attr.merge(:personal_cell => number))
+      bad_personal_cell.should_not be_valid
+      bad_company_cell = Employee.new(@attr.merge(:company_cell => number))
+      bad_company_cell.should_not be_valid
       bad_home_num = Employee.new(@attr.merge(:home_num => number))
       bad_home_num.should_not be_valid
     end
@@ -179,15 +184,19 @@ describe Employee do
   it "should accept phone numbers that are in the right format" do
     good_numbers = ["(478)361-3592","478-542-0315","4783150872"]
     good_numbers.each do |number|
-      good_mobile_num = Employee.new(@attr.merge(:mobile_num => number))
-      good_mobile_num.should be_valid
+      good_personal_cell = Employee.new(@attr.merge(:personal_cell => number))
+      good_personal_cell.should be_valid
+      good_company_cell = Employee.new(@attr.merge(:company_cell => number))
+      good_company_cell.should be_valid
       good_home_num = Employee.new(@attr.merge(:home_num => number))
       good_home_num.should be_valid
     end
   end
 
   it "should accept phone numbers that are blank" do
-    phoneless_employee = Employee.new(@attr.merge(:mobile_num => "", :home_num => ""))
+    phoneless_employee = Employee.new(@attr.merge(:personal_cell => "", 
+                                                  :company_cell => "", 
+                                                  :home_num => ""))
     phoneless_employee.should be_valid
   end
 

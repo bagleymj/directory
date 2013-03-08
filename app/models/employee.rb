@@ -1,6 +1,6 @@
 class Employee < ActiveRecord::Base
   attr_accessible :address1, :address2, :city, :location_id, :state, :zip, :first_name, :last_name, 
-    :birthday, :mobile_num, :home_num, :hire_date, :photo, :email, :job_title, :extension
+    :birthday, :personal_cell, :company_cell, :home_num, :hire_date, :photo, :email, :job_title, :extension
 
   belongs_to :location
   has_many :family_members
@@ -67,9 +67,12 @@ class Employee < ActiveRecord::Base
 
   validates :hire_date,     :presence => true
 
-  validates :mobile_num,    :format => { :with => phone_regex },
+  validates :personal_cell,    :format => { :with => phone_regex },
                             :allow_blank => true
 
+  validates :company_cell,    :format => { :with => phone_regex },
+                            :allow_blank => true
+  
   validates :home_num,      :format => { :with => phone_regex },
                             :allow_blank => true
 

@@ -44,13 +44,23 @@
           </td>
         </tr>
       <% end %>
-      <% unless @employee.mobile_num.blank? %>
+      <% unless @employee.company_cell.blank? %>
         <tr>
           <th>
-            Mobile Phone
+            Company Cell
           </th>
           <td>
-            <%= @employee.mobile_num %>
+            <%= @employee.company_cell %>
+          </td>
+        </tr>
+      <% end %>
+      <% unless @employee.personal_cell.blank? %>
+        <tr>
+          <th>
+            Personal Cell
+          </th>
+          <td>
+            <%= @employee.personal_cell %>
           </td>
         </tr>
       <% end %>
