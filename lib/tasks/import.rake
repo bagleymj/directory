@@ -11,6 +11,7 @@ task :import => [:environment] do
   CSV.foreach(file, :headers => true) do |row|
     @location_name = row[5].to_s
     @location_array = Location.where(:name => @location_name)
+    puts @location_array
     if @location_array.empty?
       @location_created = false
       until location_created = true
