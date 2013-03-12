@@ -85,5 +85,38 @@ task :import => [:environment] do
     end
     @total_rows += 1
   end
-  puts "IMPORT COMPLETE! #{@success_rows} of #{@total_rows} rows imported.\n\n"
+
+  puts "Employee Import COMPLETE! #{@success_rows} of #{@total_rows} rows imported.\n\n"
+  puts "Importing Family Members.\n\n"
+
+  reset_counts
+
+  CSV.foreach(file, :headers => true) do |row|
+    employee_array = Employee.where(:email => row[17].to_s.downcase)
+    @employee = employee_array[0]
+    unless row[18].blank? || employee_array.empty?
+      @family_member = FamilyMember.new(
+        :first_name => row[18].to_s,
+        :last_name => row[19].to_s,
+        :birthday => row[20].to_s,
+        :relationship => "Spouse",
+        :employee_id => @employee.id )
+      if @family_member.save
+        @success_rows += 1
+      else
+        puts "Import Failed. #{@employee.first_name} #{@employee.last_name}'s spouse not saved:"
+        @family_member.errors.full_messages.each do |msg|
+          puts msg
+        end
+      end
+      @total_rows += 1
+    end
+  end
+
+  def reset_counts
+    @success_rows = 0
+    @total_rows = 0
+  end
+
+
 end
