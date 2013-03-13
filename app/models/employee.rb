@@ -31,7 +31,7 @@ class Employee < ActiveRecord::Base
 
   has_attached_file :photo, 
     :styles => { :thumb => "81x108" },
-    :default_url => "/assets/photo_defaults/default_:style.jpg"
+    :default_url => "photo_defaults/default_:style.jpg"
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   zip_regex = /\A\d{5}\z/
