@@ -4,7 +4,7 @@ module ApplicationHelper
       new_image = img.slice 1..-1
       image_tag "file://#{Rails.root.join('public', new_image)}", options
     else
-      image_tag "file://#{Rails.root.join('public', 'images', img)}", options
+      image_tag "file://#{Rails.root.join('public', 'assets', img)}", options
     end
   end
 end
