@@ -24,7 +24,7 @@
           </td>
           <td>
 	    <%= link_to employee.name, :controller => :employees, :action => :show, :id => employee.id %><br />
-	    <small><%= employee.job_title %></small>
+	    <%= employee.job_title %>
           </td>
           <td>
             <%= employee.address1 %><br />
