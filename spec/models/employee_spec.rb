@@ -18,7 +18,9 @@ describe Employee do
       :company_cell => "333-333-3333",
       :extension => "1234",
       :birthday => '1983-6-21',
-      :hire_date => '2005-1-1'
+      :hire_date => '2005-1-1',
+      :password => "password",
+      :password_confirmation =>  "password"
     }
     @employee = Employee.new(@attr)
   end
@@ -46,6 +48,9 @@ describe Employee do
   it { should respond_to(:personal_cell) }
   it { should respond_to(:company_cell) }
   it { should respond_to(:password_digest) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:authenticate) }
 
   it "should create a new Employee, given valid attributes" do
     Employee.create!(@attr)
@@ -243,6 +248,34 @@ describe Employee do
     long_extension = "123456789123"
     long_extension_employee = Employee.new(@attr.merge(:extension => long_extension))
     long_extension_employee.should_not be_valid
+  end
+
+  describe "when password doesn't match confirmation" do
+    before(:each) do
+      @employee.password = "password1"
+      @employee.password_confirmation = "ldrowssap"
+    end
+    it { should_not be_valid }
+  end
+
+  it "should reject nil password confirmations" do
+    nil_confirmation_employee = Employee.new(@attr.merge(:password_confirmation => nil))
+    nil_confirmation_employee.should_not be_valid
+  end
+
+  describe "return value of authenticate method" do
+    before { @employee.save }
+    let(:found_employee) { Employee.find_by_email(@employee.email) }
+
+    describe "with valid password" do
+      it { should == found_employee.authenticate(@employee.password) }
+    end
+
+    describe "with invalid password" do
+      let(:employee_for_invalid_password) { found_employee.authenticate("invalid") }
+      it { should_not == employee_for_invalid_password }
+      specify { employee_for_invalid_password.should be_false }
+    end
   end
 
 end

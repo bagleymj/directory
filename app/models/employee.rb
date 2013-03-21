@@ -1,11 +1,13 @@
 class Employee < ActiveRecord::Base
   attr_accessible :address1, :address2, :city, :location_id, :state, :zip, :first_name, :last_name, 
-    :birthday, :personal_cell, :company_cell, :home_num, :hire_date, :photo, :email, :job_title, :extension
+    :birthday, :personal_cell, :company_cell, :home_num, :hire_date, :photo, :email, :job_title, :extension,
+    :password, :password_confirmation
 
   before_save { |employee| employee.email = email.downcase }
 
   belongs_to :location
   has_many :family_members
+  has_secure_password
 
   def name
     first_name + " " + last_name
