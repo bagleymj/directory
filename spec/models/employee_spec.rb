@@ -45,6 +45,7 @@ describe Employee do
   it { should respond_to(:children) }
   it { should respond_to(:personal_cell) }
   it { should respond_to(:company_cell) }
+  it { should respond_to(:password_digest) }
 
   it "should create a new Employee, given valid attributes" do
     Employee.create!(@attr)
