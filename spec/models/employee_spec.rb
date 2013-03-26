@@ -258,9 +258,11 @@ describe Employee do
     it { should_not be_valid }
   end
 
-  it "should reject nil password confirmations" do
-    nil_confirmation_employee = Employee.new(@attr.merge(:password_confirmation => nil))
-    nil_confirmation_employee.should_not be_valid
+  describe "when password confirmation is nil" do
+    before(:each) do
+      @employee.password_confirmation = nil
+    end
+    it { should_not be_valid }
   end
 
   describe "return value of authenticate method" do

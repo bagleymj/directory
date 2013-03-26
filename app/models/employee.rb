@@ -9,6 +9,28 @@ class Employee < ActiveRecord::Base
   has_many :family_members
   has_secure_password
 
+  #generating custom authentication that will ignore password_digest validations
+  #
+=begin
+  validates :password,      :length => (6..32),
+                            :confirmation => true,
+                            :if => :setting_password?
+
+  def password=(password_str)
+    @password = password_str
+    self.password_salt = BCrypt::Engine.generate_salt
+    self.password_digest = BCrypt::Engine.hash_secret(password_str, password_salt)
+  end
+
+  def authenticate(password)
+    password.present? && password_digest.present? && password_digest == BCrypt::Engine.hash_secret(password, password_salt)
+  end
+
+  def setting_password?
+    self.password || self.password_confirmation
+  end
+=end
+
   def name
     first_name + " " + last_name
   end
@@ -87,4 +109,5 @@ class Employee < ActiveRecord::Base
                             :allow_blank => true,
                             :length   => {:maximum => 10}
 
+  validates :password_confirmation, :presence => true
 end
