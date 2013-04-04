@@ -9,8 +9,7 @@ describe EmployeesController do
       :address2 => "", :city => "Macon", :state => "GA", :zip => "99999", :birthday => '1990-1-1',
       :hire_date => '2004-1-1', :company_cell => "555-555-5555", 
       :personal_cell => "555-555-5555", :home_num => "555-555-5555", :job_title => "Purchasing",
-      :extension => "5678", :email => "gmail@email.net", :location_id => 1, :password => "password",
-      :password_confirmation => "password" }
+      :extension => "5678", :email => "gmail@email.net", :location_id => 1 }
   end
 
   describe "GET 'index'" do

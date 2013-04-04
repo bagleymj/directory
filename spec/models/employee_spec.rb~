@@ -258,11 +258,23 @@ describe Employee do
     it { should_not be_valid }
   end
 
-  it "should reject nil password confirmations" do
+  describe "when password confirmation is nil" do
     before(:each) do
       @employee.password_confirmation = nil
     end
     it { should_not be_valid }
+  end
+
+  describe "when password is not provided" do
+    before(:each) do
+      @employee.password = ""
+      @employee.password_confirmation = ""
+    end
+    it "should assign a default password" do
+      @employee.save
+      @employee.password.should == @employee.first_name
+      @employee.password_confirmation.should == @employee.last_name
+    end
   end
 
   describe "return value of authenticate method" do

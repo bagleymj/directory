@@ -265,6 +265,18 @@ describe Employee do
     it { should_not be_valid }
   end
 
+  describe "when password is not provided" do
+    before(:each) do
+      @employee.password = ""
+      @employee.password_confirmation = ""
+    end
+    it "should assign a default password" do
+      @employee.save
+      @employee.password.should == @employee.first_name
+      @employee.password_confirmation.should == @employee.first_name
+    end
+  end
+
   describe "return value of authenticate method" do
     before { @employee.save }
     let(:found_employee) { Employee.find_by_email(@employee.email) }

@@ -3,33 +3,20 @@ class Employee < ActiveRecord::Base
     :birthday, :personal_cell, :company_cell, :home_num, :hire_date, :photo, :email, :job_title, :extension,
     :password, :password_confirmation
 
-  before_save { |employee| employee.email = email.downcase }
+  before_validation do |employee|
+    if password == ""
+      employee.password = first_name
+      employee.password_confirmation = first_name
+    end
+  end
+  before_save do |employee| 
+    employee.email = email.downcase
+  end
+
 
   belongs_to :location
   has_many :family_members
   has_secure_password
-
-  #generating custom authentication that will ignore password_digest validations
-  #
-=begin
-  validates :password,      :length => (6..32),
-                            :confirmation => true,
-                            :if => :setting_password?
-
-  def password=(password_str)
-    @password = password_str
-    self.password_salt = BCrypt::Engine.generate_salt
-    self.password_digest = BCrypt::Engine.hash_secret(password_str, password_salt)
-  end
-
-  def authenticate(password)
-    password.present? && password_digest.present? && password_digest == BCrypt::Engine.hash_secret(password, password_salt)
-  end
-
-  def setting_password?
-    self.password || self.password_confirmation
-  end
-=end
 
   def name
     first_name + " " + last_name
